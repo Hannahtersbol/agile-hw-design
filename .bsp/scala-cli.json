@@ -1,0 +1,20 @@
+{
+  "name": "scala-cli",
+  "argv": [
+    "C:\\Program Files\\scala-cli-x86_64-pc-win32\\scala-cli.EXE",
+    "bsp",
+    "--json-options",
+    "C:\\Users\\capta\\Desktop\\school\\AgileHW\\agile-hw-design\\.scala-build\\ide-options-v2.json",
+    "--json-launcher-options",
+    "C:\\Users\\capta\\Desktop\\school\\AgileHW\\agile-hw-design\\.scala-build\\ide-launcher-options.json",
+    "--envs-file",
+    "C:\\Users\\capta\\Desktop\\school\\AgileHW\\agile-hw-design\\.scala-build\\ide-envs.json",
+    "C:\\Users\\capta\\Desktop\\school\\AgileHW\\agile-hw-design"
+  ],
+  "version": "1.8.5",
+  "bspVersion": "2.1.1",
+  "languages": [
+    "scala",
+    "java"
+  ]
+}
