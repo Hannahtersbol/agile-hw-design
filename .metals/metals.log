@@ -36,3 +36,586 @@ INFO: Unsupported notification method: $/setTrace
 2025.09.30 14:38:17 INFO  Scala CLI: 	at java.base/java.lang.ProcessImpl.start(ProcessImpl.java:225)
 2025.09.30 14:38:17 INFO  Scala CLI: 	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1126)
 2025.09.30 14:38:17 INFO  Scala CLI: 	... 4 more
+2025.10.07 14:17:19 INFO  Started: Metals version 1.6.2 in folders '/Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design' for client Visual Studio Code 1.104.2.
+2025.10.07 14:17:20 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:17:20 INFO  Attempting to connect to the build server...
+2025.10.07 14:17:20 INFO  Running BSP server List(C:\Program Files\scala-cli-x86_64-pc-win32\scala-cli.EXE, bsp, --json-options, C:\Users\capta\Desktop\school\AgileHW\agile-hw-design\.scala-build\ide-options-v2.json, --json-launcher-options, C:\Users\capta\Desktop\school\AgileHW\agile-hw-design\.scala-build\ide-launcher-options.json, --envs-file, C:\Users\capta\Desktop\school\AgileHW\agile-hw-design\.scala-build\ide-envs.json, C:\Users\capta\Desktop\school\AgileHW\agile-hw-design)
+2025.10.07 14:17:20 ERROR Running process 'C:\Program Files\scala-cli-x86_64-pc-win32\scala-cli.EXE bsp --json-options C:\Users\capta\Desktop\school\AgileHW\agile-hw-design\.scala-build\ide-options-v2.json --json-launcher-options C:\Users\capta\Desktop\school\AgileHW\agile-hw-design\.scala-build\ide-launcher-options.json --envs-file C:\Users\capta\Desktop\school\AgileHW\agile-hw-design\.scala-build\ide-envs.json C:\Users\capta\Desktop\school\AgileHW\agile-hw-design' failed
+java.io.IOException: Cannot run program "C:\Program Files\scala-cli-x86_64-pc-win32\scala-cli.EXE" (in directory "/Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design"): error=2, No such file or directory
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1170)
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1089)
+	at scala.meta.internal.process.SystemProcess$.run(SystemProcess.scala:48)
+	at scala.meta.internal.bsp.BspServers.newConnection$1(BspServers.scala:118)
+	at scala.meta.internal.bsp.BspServers.$anonfun$newServer$8(BspServers.scala:161)
+	at scala.meta.internal.metals.BuildServerConnection$.setupServer$1(BuildServerConnection.scala:631)
+	at scala.meta.internal.metals.BuildServerConnection$.fromSockets(BuildServerConnection.scala:700)
+	at scala.meta.internal.bsp.BspServers.newServer(BspServers.scala:156)
+	at scala.meta.internal.bsp.BspConnector.connect$1(BspConnector.scala:185)
+	at scala.meta.internal.bsp.BspConnector.connect(BspConnector.scala:252)
+	at scala.meta.internal.metals.ConnectionProvider$Connect$.$anonfun$createSession$4(ConnectionProvider.scala:568)
+	at scala.meta.internal.metals.TimerProvider.withTimer(TimerProvider.scala:38)
+	at scala.meta.internal.metals.TimerProvider.timed(TimerProvider.scala:14)
+	at scala.meta.internal.metals.ConnectionProvider$Connect$.$anonfun$createSession$3(ConnectionProvider.scala:568)
+	at scala.meta.internal.metals.Interruptable.$anonfun$flatMap$1(Interruptable.scala:33)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:470)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.lang.Thread.run(Thread.java:1583)
+Caused by: java.io.IOException: error=2, No such file or directory
+	at java.lang.ProcessImpl.forkAndExec(Native Method)
+	at java.lang.ProcessImpl.<init>(ProcessImpl.java:295)
+	at java.lang.ProcessImpl.start(ProcessImpl.java:225)
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1126)
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1089)
+	at scala.meta.internal.process.SystemProcess$.run(SystemProcess.scala:48)
+	at scala.meta.internal.bsp.BspServers.newConnection$1(BspServers.scala:118)
+	at scala.meta.internal.bsp.BspServers.$anonfun$newServer$8(BspServers.scala:161)
+	at scala.meta.internal.metals.BuildServerConnection$.setupServer$1(BuildServerConnection.scala:631)
+	at scala.meta.internal.metals.BuildServerConnection$.fromSockets(BuildServerConnection.scala:700)
+	at scala.meta.internal.bsp.BspServers.newServer(BspServers.scala:156)
+	at scala.meta.internal.bsp.BspConnector.connect$1(BspConnector.scala:185)
+	at scala.meta.internal.bsp.BspConnector.connect(BspConnector.scala:252)
+	at scala.meta.internal.metals.ConnectionProvider$Connect$.$anonfun$createSession$4(ConnectionProvider.scala:568)
+	at scala.meta.internal.metals.TimerProvider.withTimer(TimerProvider.scala:38)
+	at scala.meta.internal.metals.TimerProvider.timed(TimerProvider.scala:14)
+	at scala.meta.internal.metals.ConnectionProvider$Connect$.$anonfun$createSession$3(ConnectionProvider.scala:568)
+	at scala.meta.internal.metals.Interruptable.$anonfun$flatMap$1(Interruptable.scala:33)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:470)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.lang.Thread.run(Thread.java:1583)
+
+2025.10.07 14:17:20 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/.metals/bsp.trace.json or /Users/HannahTersbol/Library/Caches/org.scalameta.metals/bsp.trace.json
+2025.10.07 14:18:20 ERROR Timeout waiting for 'build/initialize' response
+2025.10.07 14:18:20 WARN  Retrying connection to the build server scala-cli
+2025.10.07 14:18:20 INFO  Running BSP server List(C:\Program Files\scala-cli-x86_64-pc-win32\scala-cli.EXE, bsp, --json-options, C:\Users\capta\Desktop\school\AgileHW\agile-hw-design\.scala-build\ide-options-v2.json, --json-launcher-options, C:\Users\capta\Desktop\school\AgileHW\agile-hw-design\.scala-build\ide-launcher-options.json, --envs-file, C:\Users\capta\Desktop\school\AgileHW\agile-hw-design\.scala-build\ide-envs.json, C:\Users\capta\Desktop\school\AgileHW\agile-hw-design)
+2025.10.07 14:18:20 ERROR Running process 'C:\Program Files\scala-cli-x86_64-pc-win32\scala-cli.EXE bsp --json-options C:\Users\capta\Desktop\school\AgileHW\agile-hw-design\.scala-build\ide-options-v2.json --json-launcher-options C:\Users\capta\Desktop\school\AgileHW\agile-hw-design\.scala-build\ide-launcher-options.json --envs-file C:\Users\capta\Desktop\school\AgileHW\agile-hw-design\.scala-build\ide-envs.json C:\Users\capta\Desktop\school\AgileHW\agile-hw-design' failed
+java.io.IOException: Cannot run program "C:\Program Files\scala-cli-x86_64-pc-win32\scala-cli.EXE" (in directory "/Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design"): error=2, No such file or directory
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1170)
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1089)
+	at scala.meta.internal.process.SystemProcess$.run(SystemProcess.scala:48)
+	at scala.meta.internal.bsp.BspServers.newConnection$1(BspServers.scala:118)
+	at scala.meta.internal.bsp.BspServers.$anonfun$newServer$8(BspServers.scala:161)
+	at scala.meta.internal.metals.BuildServerConnection$.setupServer$1(BuildServerConnection.scala:631)
+	at scala.meta.internal.metals.BuildServerConnection$.fromSockets(BuildServerConnection.scala:700)
+	at scala.meta.internal.metals.BuildServerConnection$$anonfun$fromSockets$17.applyOrElse(BuildServerConnection.scala:717)
+	at scala.meta.internal.metals.BuildServerConnection$$anonfun$fromSockets$17.applyOrElse(BuildServerConnection.scala:714)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:490)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.lang.Thread.run(Thread.java:1583)
+Caused by: java.io.IOException: error=2, No such file or directory
+	at java.lang.ProcessImpl.forkAndExec(Native Method)
+	at java.lang.ProcessImpl.<init>(ProcessImpl.java:295)
+	at java.lang.ProcessImpl.start(ProcessImpl.java:225)
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1126)
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1089)
+	at scala.meta.internal.process.SystemProcess$.run(SystemProcess.scala:48)
+	at scala.meta.internal.bsp.BspServers.newConnection$1(BspServers.scala:118)
+	at scala.meta.internal.bsp.BspServers.$anonfun$newServer$8(BspServers.scala:161)
+	at scala.meta.internal.metals.BuildServerConnection$.setupServer$1(BuildServerConnection.scala:631)
+	at scala.meta.internal.metals.BuildServerConnection$.fromSockets(BuildServerConnection.scala:700)
+	at scala.meta.internal.metals.BuildServerConnection$$anonfun$fromSockets$17.applyOrElse(BuildServerConnection.scala:717)
+	at scala.meta.internal.metals.BuildServerConnection$$anonfun$fromSockets$17.applyOrElse(BuildServerConnection.scala:714)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:490)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.lang.Thread.run(Thread.java:1583)
+
+2025.10.07 14:18:20 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/.metals/bsp.trace.json or /Users/HannahTersbol/Library/Caches/org.scalameta.metals/bsp.trace.json
+2025.10.07 14:19:20 ERROR Timeout waiting for 'build/initialize' response
+2025.10.07 14:19:20 WARN  Retrying connection to the build server scala-cli
+2025.10.07 14:19:20 INFO  Running BSP server List(C:\Program Files\scala-cli-x86_64-pc-win32\scala-cli.EXE, bsp, --json-options, C:\Users\capta\Desktop\school\AgileHW\agile-hw-design\.scala-build\ide-options-v2.json, --json-launcher-options, C:\Users\capta\Desktop\school\AgileHW\agile-hw-design\.scala-build\ide-launcher-options.json, --envs-file, C:\Users\capta\Desktop\school\AgileHW\agile-hw-design\.scala-build\ide-envs.json, C:\Users\capta\Desktop\school\AgileHW\agile-hw-design)
+2025.10.07 14:19:20 ERROR Running process 'C:\Program Files\scala-cli-x86_64-pc-win32\scala-cli.EXE bsp --json-options C:\Users\capta\Desktop\school\AgileHW\agile-hw-design\.scala-build\ide-options-v2.json --json-launcher-options C:\Users\capta\Desktop\school\AgileHW\agile-hw-design\.scala-build\ide-launcher-options.json --envs-file C:\Users\capta\Desktop\school\AgileHW\agile-hw-design\.scala-build\ide-envs.json C:\Users\capta\Desktop\school\AgileHW\agile-hw-design' failed
+java.io.IOException: Cannot run program "C:\Program Files\scala-cli-x86_64-pc-win32\scala-cli.EXE" (in directory "/Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design"): error=2, No such file or directory
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1170)
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1089)
+	at scala.meta.internal.process.SystemProcess$.run(SystemProcess.scala:48)
+	at scala.meta.internal.bsp.BspServers.newConnection$1(BspServers.scala:118)
+	at scala.meta.internal.bsp.BspServers.$anonfun$newServer$8(BspServers.scala:161)
+	at scala.meta.internal.metals.BuildServerConnection$.setupServer$1(BuildServerConnection.scala:631)
+	at scala.meta.internal.metals.BuildServerConnection$.fromSockets(BuildServerConnection.scala:700)
+	at scala.meta.internal.metals.BuildServerConnection$$anonfun$fromSockets$17.applyOrElse(BuildServerConnection.scala:717)
+	at scala.meta.internal.metals.BuildServerConnection$$anonfun$fromSockets$17.applyOrElse(BuildServerConnection.scala:714)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:490)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.lang.Thread.run(Thread.java:1583)
+Caused by: java.io.IOException: error=2, No such file or directory
+	at java.lang.ProcessImpl.forkAndExec(Native Method)
+	at java.lang.ProcessImpl.<init>(ProcessImpl.java:295)
+	at java.lang.ProcessImpl.start(ProcessImpl.java:225)
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1126)
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1089)
+	at scala.meta.internal.process.SystemProcess$.run(SystemProcess.scala:48)
+	at scala.meta.internal.bsp.BspServers.newConnection$1(BspServers.scala:118)
+	at scala.meta.internal.bsp.BspServers.$anonfun$newServer$8(BspServers.scala:161)
+	at scala.meta.internal.metals.BuildServerConnection$.setupServer$1(BuildServerConnection.scala:631)
+	at scala.meta.internal.metals.BuildServerConnection$.fromSockets(BuildServerConnection.scala:700)
+	at scala.meta.internal.metals.BuildServerConnection$$anonfun$fromSockets$17.applyOrElse(BuildServerConnection.scala:717)
+	at scala.meta.internal.metals.BuildServerConnection$$anonfun$fromSockets$17.applyOrElse(BuildServerConnection.scala:714)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:490)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.lang.Thread.run(Thread.java:1583)
+
+2025.10.07 14:19:20 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/.metals/bsp.trace.json or /Users/HannahTersbol/Library/Caches/org.scalameta.metals/bsp.trace.json
+2025.10.07 14:20:09 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:20:10 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:20:10 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:20:13 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:20:13 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:20:15 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:20:16 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:20:16 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:20:20 ERROR Timeout waiting for 'build/initialize' response
+2025.10.07 14:20:20 WARN  Retrying connection to the build server scala-cli
+2025.10.07 14:20:20 INFO  Running BSP server List(C:\Program Files\scala-cli-x86_64-pc-win32\scala-cli.EXE, bsp, --json-options, C:\Users\capta\Desktop\school\AgileHW\agile-hw-design\.scala-build\ide-options-v2.json, --json-launcher-options, C:\Users\capta\Desktop\school\AgileHW\agile-hw-design\.scala-build\ide-launcher-options.json, --envs-file, C:\Users\capta\Desktop\school\AgileHW\agile-hw-design\.scala-build\ide-envs.json, C:\Users\capta\Desktop\school\AgileHW\agile-hw-design)
+2025.10.07 14:20:20 ERROR Running process 'C:\Program Files\scala-cli-x86_64-pc-win32\scala-cli.EXE bsp --json-options C:\Users\capta\Desktop\school\AgileHW\agile-hw-design\.scala-build\ide-options-v2.json --json-launcher-options C:\Users\capta\Desktop\school\AgileHW\agile-hw-design\.scala-build\ide-launcher-options.json --envs-file C:\Users\capta\Desktop\school\AgileHW\agile-hw-design\.scala-build\ide-envs.json C:\Users\capta\Desktop\school\AgileHW\agile-hw-design' failed
+java.io.IOException: Cannot run program "C:\Program Files\scala-cli-x86_64-pc-win32\scala-cli.EXE" (in directory "/Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design"): error=2, No such file or directory
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1170)
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1089)
+	at scala.meta.internal.process.SystemProcess$.run(SystemProcess.scala:48)
+	at scala.meta.internal.bsp.BspServers.newConnection$1(BspServers.scala:118)
+	at scala.meta.internal.bsp.BspServers.$anonfun$newServer$8(BspServers.scala:161)
+	at scala.meta.internal.metals.BuildServerConnection$.setupServer$1(BuildServerConnection.scala:631)
+	at scala.meta.internal.metals.BuildServerConnection$.fromSockets(BuildServerConnection.scala:700)
+	at scala.meta.internal.metals.BuildServerConnection$$anonfun$fromSockets$17.applyOrElse(BuildServerConnection.scala:717)
+	at scala.meta.internal.metals.BuildServerConnection$$anonfun$fromSockets$17.applyOrElse(BuildServerConnection.scala:714)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:490)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.lang.Thread.run(Thread.java:1583)
+Caused by: java.io.IOException: error=2, No such file or directory
+	at java.lang.ProcessImpl.forkAndExec(Native Method)
+	at java.lang.ProcessImpl.<init>(ProcessImpl.java:295)
+	at java.lang.ProcessImpl.start(ProcessImpl.java:225)
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1126)
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1089)
+	at scala.meta.internal.process.SystemProcess$.run(SystemProcess.scala:48)
+	at scala.meta.internal.bsp.BspServers.newConnection$1(BspServers.scala:118)
+	at scala.meta.internal.bsp.BspServers.$anonfun$newServer$8(BspServers.scala:161)
+	at scala.meta.internal.metals.BuildServerConnection$.setupServer$1(BuildServerConnection.scala:631)
+	at scala.meta.internal.metals.BuildServerConnection$.fromSockets(BuildServerConnection.scala:700)
+	at scala.meta.internal.metals.BuildServerConnection$$anonfun$fromSockets$17.applyOrElse(BuildServerConnection.scala:717)
+	at scala.meta.internal.metals.BuildServerConnection$$anonfun$fromSockets$17.applyOrElse(BuildServerConnection.scala:714)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:490)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.lang.Thread.run(Thread.java:1583)
+
+2025.10.07 14:20:20 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/.metals/bsp.trace.json or /Users/HannahTersbol/Library/Caches/org.scalameta.metals/bsp.trace.json
+2025.10.07 14:20:31 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/expander.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:20:31 WARN  Could not find semantic tokens for: file:///Users/HannahTersbol/Desktop/Agil%20Hardware%20Design/agile-hw-design/src/main/scala/expander.scala
+2025.10.07 14:20:32 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:20:32 WARN  no build target for: /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala
+2025.10.07 14:20:32 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:20:32 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:20:32 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:20:33 WARN  no build target for: /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala
+2025.10.07 14:20:33 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:20:33 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:20:51 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:20:51 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:20:52 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:20:52 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:20:52 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:20:55 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:20:57 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:21:20 ERROR Timeout waiting for 'build/initialize' response
+2025.10.07 14:21:20 WARN  Retrying connection to the build server scala-cli
+2025.10.07 14:21:20 INFO  Running BSP server List(C:\Program Files\scala-cli-x86_64-pc-win32\scala-cli.EXE, bsp, --json-options, C:\Users\capta\Desktop\school\AgileHW\agile-hw-design\.scala-build\ide-options-v2.json, --json-launcher-options, C:\Users\capta\Desktop\school\AgileHW\agile-hw-design\.scala-build\ide-launcher-options.json, --envs-file, C:\Users\capta\Desktop\school\AgileHW\agile-hw-design\.scala-build\ide-envs.json, C:\Users\capta\Desktop\school\AgileHW\agile-hw-design)
+2025.10.07 14:21:20 ERROR Running process 'C:\Program Files\scala-cli-x86_64-pc-win32\scala-cli.EXE bsp --json-options C:\Users\capta\Desktop\school\AgileHW\agile-hw-design\.scala-build\ide-options-v2.json --json-launcher-options C:\Users\capta\Desktop\school\AgileHW\agile-hw-design\.scala-build\ide-launcher-options.json --envs-file C:\Users\capta\Desktop\school\AgileHW\agile-hw-design\.scala-build\ide-envs.json C:\Users\capta\Desktop\school\AgileHW\agile-hw-design' failed
+java.io.IOException: Cannot run program "C:\Program Files\scala-cli-x86_64-pc-win32\scala-cli.EXE" (in directory "/Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design"): error=2, No such file or directory
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1170)
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1089)
+	at scala.meta.internal.process.SystemProcess$.run(SystemProcess.scala:48)
+	at scala.meta.internal.bsp.BspServers.newConnection$1(BspServers.scala:118)
+	at scala.meta.internal.bsp.BspServers.$anonfun$newServer$8(BspServers.scala:161)
+	at scala.meta.internal.metals.BuildServerConnection$.setupServer$1(BuildServerConnection.scala:631)
+	at scala.meta.internal.metals.BuildServerConnection$.fromSockets(BuildServerConnection.scala:700)
+	at scala.meta.internal.metals.BuildServerConnection$$anonfun$fromSockets$17.applyOrElse(BuildServerConnection.scala:717)
+	at scala.meta.internal.metals.BuildServerConnection$$anonfun$fromSockets$17.applyOrElse(BuildServerConnection.scala:714)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:490)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.lang.Thread.run(Thread.java:1583)
+Caused by: java.io.IOException: error=2, No such file or directory
+	at java.lang.ProcessImpl.forkAndExec(Native Method)
+	at java.lang.ProcessImpl.<init>(ProcessImpl.java:295)
+	at java.lang.ProcessImpl.start(ProcessImpl.java:225)
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1126)
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1089)
+	at scala.meta.internal.process.SystemProcess$.run(SystemProcess.scala:48)
+	at scala.meta.internal.bsp.BspServers.newConnection$1(BspServers.scala:118)
+	at scala.meta.internal.bsp.BspServers.$anonfun$newServer$8(BspServers.scala:161)
+	at scala.meta.internal.metals.BuildServerConnection$.setupServer$1(BuildServerConnection.scala:631)
+	at scala.meta.internal.metals.BuildServerConnection$.fromSockets(BuildServerConnection.scala:700)
+	at scala.meta.internal.metals.BuildServerConnection$$anonfun$fromSockets$17.applyOrElse(BuildServerConnection.scala:717)
+	at scala.meta.internal.metals.BuildServerConnection$$anonfun$fromSockets$17.applyOrElse(BuildServerConnection.scala:714)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:490)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.lang.Thread.run(Thread.java:1583)
+
+2025.10.07 14:21:20 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/.metals/bsp.trace.json or /Users/HannahTersbol/Library/Caches/org.scalameta.metals/bsp.trace.json
+2025.10.07 14:21:51 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:21:52 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:21:52 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:21:54 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:21:54 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:21:54 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:21:54 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:21:55 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:21:56 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:22:00 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:22:00 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:22:01 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:22:02 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:22:02 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:22:02 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:22:03 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:22:03 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:22:04 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:22:04 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:22:06 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:22:06 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:22:06 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:22:06 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:22:06 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:22:07 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:22:07 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:22:07 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:22:07 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:22:08 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:22:08 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:22:08 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:22:20 ERROR Timeout waiting for 'build/initialize' response
+2025.10.07 14:22:20 WARN  Retrying connection to the build server scala-cli
+2025.10.07 14:22:20 INFO  Running BSP server List(C:\Program Files\scala-cli-x86_64-pc-win32\scala-cli.EXE, bsp, --json-options, C:\Users\capta\Desktop\school\AgileHW\agile-hw-design\.scala-build\ide-options-v2.json, --json-launcher-options, C:\Users\capta\Desktop\school\AgileHW\agile-hw-design\.scala-build\ide-launcher-options.json, --envs-file, C:\Users\capta\Desktop\school\AgileHW\agile-hw-design\.scala-build\ide-envs.json, C:\Users\capta\Desktop\school\AgileHW\agile-hw-design)
+2025.10.07 14:22:20 ERROR Running process 'C:\Program Files\scala-cli-x86_64-pc-win32\scala-cli.EXE bsp --json-options C:\Users\capta\Desktop\school\AgileHW\agile-hw-design\.scala-build\ide-options-v2.json --json-launcher-options C:\Users\capta\Desktop\school\AgileHW\agile-hw-design\.scala-build\ide-launcher-options.json --envs-file C:\Users\capta\Desktop\school\AgileHW\agile-hw-design\.scala-build\ide-envs.json C:\Users\capta\Desktop\school\AgileHW\agile-hw-design' failed
+java.io.IOException: Cannot run program "C:\Program Files\scala-cli-x86_64-pc-win32\scala-cli.EXE" (in directory "/Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design"): error=2, No such file or directory
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1170)
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1089)
+	at scala.meta.internal.process.SystemProcess$.run(SystemProcess.scala:48)
+	at scala.meta.internal.bsp.BspServers.newConnection$1(BspServers.scala:118)
+	at scala.meta.internal.bsp.BspServers.$anonfun$newServer$8(BspServers.scala:161)
+	at scala.meta.internal.metals.BuildServerConnection$.setupServer$1(BuildServerConnection.scala:631)
+	at scala.meta.internal.metals.BuildServerConnection$.fromSockets(BuildServerConnection.scala:700)
+	at scala.meta.internal.metals.BuildServerConnection$$anonfun$fromSockets$17.applyOrElse(BuildServerConnection.scala:717)
+	at scala.meta.internal.metals.BuildServerConnection$$anonfun$fromSockets$17.applyOrElse(BuildServerConnection.scala:714)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:490)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.lang.Thread.run(Thread.java:1583)
+Caused by: java.io.IOException: error=2, No such file or directory
+	at java.lang.ProcessImpl.forkAndExec(Native Method)
+	at java.lang.ProcessImpl.<init>(ProcessImpl.java:295)
+	at java.lang.ProcessImpl.start(ProcessImpl.java:225)
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1126)
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1089)
+	at scala.meta.internal.process.SystemProcess$.run(SystemProcess.scala:48)
+	at scala.meta.internal.bsp.BspServers.newConnection$1(BspServers.scala:118)
+	at scala.meta.internal.bsp.BspServers.$anonfun$newServer$8(BspServers.scala:161)
+	at scala.meta.internal.metals.BuildServerConnection$.setupServer$1(BuildServerConnection.scala:631)
+	at scala.meta.internal.metals.BuildServerConnection$.fromSockets(BuildServerConnection.scala:700)
+	at scala.meta.internal.metals.BuildServerConnection$$anonfun$fromSockets$17.applyOrElse(BuildServerConnection.scala:717)
+	at scala.meta.internal.metals.BuildServerConnection$$anonfun$fromSockets$17.applyOrElse(BuildServerConnection.scala:714)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:490)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.lang.Thread.run(Thread.java:1583)
+
+2025.10.07 14:22:20 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/.metals/bsp.trace.json or /Users/HannahTersbol/Library/Caches/org.scalameta.metals/bsp.trace.json
+2025.10.07 14:22:43 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:22:43 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:22:43 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:22:43 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:22:44 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:22:44 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:22:44 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:22:46 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:22:46 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:22:46 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:22:46 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:22:46 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:22:46 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:22:46 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:22:47 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:22:47 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:22:48 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:22:48 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:23:03 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:23:13 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:23:13 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:23:13 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:23:13 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:23:13 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:23:14 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:23:20 ERROR Timeout waiting for 'build/initialize' response
+2025.10.07 14:23:20 ERROR Failed to connect with build server, no functionality will work.
+java.util.concurrent.TimeoutException
+	at java.util.concurrent.CompletableFuture.timedGet(CompletableFuture.java:1960)
+	at java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2095)
+	at scala.meta.internal.metals.BuildServerConnection$.initialize(BuildServerConnection.scala:787)
+	at scala.meta.internal.metals.BuildServerConnection$.$anonfun$fromSockets$1(BuildServerConnection.scala:658)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:467)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.lang.Thread.run(Thread.java:1583)
+
+2025.10.07 14:23:20 WARN  no build target for: /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/expander.scala
+2025.10.07 14:23:20 WARN  no build target for: /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala
+2025.10.07 14:23:20 WARN  no build target for: /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala
+2025.10.07 14:23:20 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:23:20 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:23:20 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:23:21 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:23:21 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/expander.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:23:21 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:23:21 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:23:22 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:23:41 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/expander.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:23:41 WARN  no build target for: /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/compressor.scala
+2025.10.07 14:23:41 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/compressor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:23:41 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/compressor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:23:41 WARN  Could not find semantic tokens for: file:///Users/HannahTersbol/Desktop/Agil%20Hardware%20Design/agile-hw-design/src/main/scala/compressor.scala
+2025.10.07 14:23:41 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/compressor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:23:41 WARN  Could not find semantic tokens for: file:///Users/HannahTersbol/Desktop/Agil%20Hardware%20Design/agile-hw-design/src/main/scala/compressor.scala
+2025.10.07 14:23:58 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/collector.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:23:58 WARN  no build target for: /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/collector.scala
+2025.10.07 14:23:58 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/collector.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:23:58 WARN  Could not find semantic tokens for: file:///Users/HannahTersbol/Desktop/Agil%20Hardware%20Design/agile-hw-design/src/main/scala/collector.scala
+2025.10.07 14:23:58 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/collector.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:23:58 WARN  Could not find semantic tokens for: file:///Users/HannahTersbol/Desktop/Agil%20Hardware%20Design/agile-hw-design/src/main/scala/collector.scala
+2025.10.07 14:24:00 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:24:00 WARN  no build target for: /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala
+2025.10.07 14:24:00 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:24:00 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:24:00 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:24:00 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:24:07 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:24:08 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:24:17 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:24:19 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:24:19 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:24:19 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:24:19 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:24:21 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:24:21 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:24:21 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:24:21 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:24:21 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:24:22 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:24:22 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:24:22 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:24:22 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:24:32 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:24:33 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:24:32 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:24:32 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:24:32 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:24:33 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:24:46 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/collector.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:24:49 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:24:49 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:24:50 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:24:52 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:24:52 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:24:53 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:24:53 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:24:54 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:25:21 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:25:21 WARN  no build target for: /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala
+2025.10.07 14:25:21 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:25:21 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:25:21 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:25:33 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:25:34 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:25:34 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:25:34 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:25:34 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:25:35 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:25:34 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:25:35 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:25:36 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:25:43 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:25:43 WARN  no build target for: /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala
+2025.10.07 14:25:43 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:25:43 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:25:43 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:25:45 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:25:45 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:25:50 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:25:51 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:25:51 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:25:53 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:25:53 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:25:53 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:25:55 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:25:55 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:25:55 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:25:55 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:25:57 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:25:57 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:25:57 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:25:57 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:25:59 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:25:59 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:25:59 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:25:59 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:00 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:00 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:00 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:02 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:04 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:04 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:06 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:06 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Exception in thread "pool-86-thread-1" java.lang.InterruptedException
+	at scala.meta.internal.metals.FutureCancelToken.checkCanceled(FutureCancelToken.scala:29)
+	at scala.meta.internal.pc.CompilerAccess.onCompilerJobQueue$$anonfun$1(CompilerAccess.scala:244)
+	at scala.meta.internal.pc.CompilerJobQueue$Job.run(CompilerJobQueue.scala:153)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2025.10.07 14:26:06 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:06 INFO  Created report: Optional[file:///Users/HannahTersbol/Desktop/Agil%20Hardware%20Design/agile-hw-design/src/main/scala/sha256.scala]
+2025.10.07 14:26:06 INFO  empty definition using pc, found symbol in pc: `<none>`. (full report at: "/Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/.metals/.reports/metals-full/2025-10-07/r_empty-definition_14-26-06-569.md")
+2025.10.07 14:26:07 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:07 WARN  no build target for: /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala
+2025.10.07 14:26:07 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:08 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:09 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:09 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:09 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:09 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:10 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Exception in thread "pool-91-thread-1" java.lang.InterruptedException
+	at scala.meta.internal.metals.FutureCancelToken.checkCanceled(FutureCancelToken.scala:29)
+	at scala.meta.internal.pc.CompilerAccess.onCompilerJobQueue$$anonfun$1(CompilerAccess.scala:244)
+	at scala.meta.internal.pc.CompilerJobQueue$Job.run(CompilerJobQueue.scala:153)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2025.10.07 14:26:10 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:10 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:10 INFO  Created report: Optional[file:///Users/HannahTersbol/Desktop/Agil%20Hardware%20Design/agile-hw-design/src/main/scala/preprocessor.scala]
+2025.10.07 14:26:10 INFO  empty definition using pc, found symbol in pc: `<none>`. (full report at: "/Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/.metals/.reports/metals-full/2025-10-07/r_empty-definition_14-26-10-579.md")
+2025.10.07 14:26:11 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:14 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:14 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:14 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:17 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:17 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:19 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:19 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:19 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:19 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:19 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:19 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:19 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:20 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:20 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:22 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:24 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:24 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:24 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:24 WARN  no build target for: /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala
+2025.10.07 14:26:24 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:24 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:24 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:25 WARN  no build target for: /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala
+2025.10.07 14:26:25 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:25 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:25 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:27 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:27 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:27 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:28 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:28 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:28 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:30 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:30 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:30 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:30 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:32 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:35 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:35 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:36 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:35 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:42 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:42 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:42 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:42 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:46 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:46 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:46 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:46 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:46 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:46 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:46 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:47 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:47 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:47 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:47 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:47 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:49 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:49 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:49 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:50 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:50 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:51 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:51 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:55 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:57 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:58 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:58 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:58 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:58 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:26:59 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:27:02 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:27:02 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:27:02 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:27:04 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:27:06 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:27:06 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:27:06 INFO  empty definition using pc, found symbol in pc: `<none>`. (full report at: "/Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/.metals/.reports/metals-full/2025-10-07/r_empty-definition_14-26-06-569.md")
+2025.10.07 14:27:06 WARN  no build target for: /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala
+2025.10.07 14:27:06 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:27:09 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:27:14 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:27:15 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:27:16 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:27:17 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:27:16 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:27:19 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:27:19 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:27:23 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:27:23 WARN  no build target for: /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala
+2025.10.07 14:27:23 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:27:24 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:27:23 WARN  no build target for: /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala
+2025.10.07 14:27:23 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:27:24 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:27:24 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:27:24 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:27:43 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:28:05 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:28:05 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:28:05 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:28:06 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:28:06 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:28:07 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:28:07 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:28:06 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:28:08 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:28:08 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:28:08 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:28:08 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:28:09 WARN  no build target for: /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala
+2025.10.07 14:28:09 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/preprocessor.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:28:10 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:28:10 WARN  no build target for: /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala
+2025.10.07 14:28:09 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.07 14:28:13 INFO  no build target found for /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala. Using presentation compiler with project's scala-library version: 3.3.6

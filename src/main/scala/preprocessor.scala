@@ -1,10 +1,11 @@
 import chisel3._
 import chisel3.util._
 
-class preprocessor[T <: Data](gen: T) extends Module {
+class preprocessor extends Module {
   val io = IO(new Bundle {
-    val password = Input(gen)
-    val block = Output(gen)
+    val password = Input(UInt(32.W))
+    val width = Input(UInt(32.W))
+    val block = Output(UInt(512.W))
   })
 
   // SHA-256 initial hash values
@@ -37,5 +38,16 @@ class preprocessor[T <: Data](gen: T) extends Module {
     0x748f82ee.U(32.W), 0x78a5636f.U(32.W), 0x84c87814.U(32.W), 0x8cc70208.U(32.W), 
     0x90befffa.U(32.W), 0xa4506ceb.U(32.W), 0xbef9a3f7.U(32.W), 0xc67178f2.U(32.W)
   ))
-  //Code here
+
+   //register for collected password and its length
+    val passwordReg = RegInit(0.U((width * 8).W))
+    val lengthReg = RegInit(0.U(32.W))
+
+    // Shift the existing bits and append the new chunk
+    when (lengthReg < (width * 8).U) {
+      passwordReg := (passwordReg << 32) | io.password.asUInt
+      lengthReg := lengthReg + io.width
+    }
+
+
 }
