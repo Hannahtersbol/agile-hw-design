@@ -2,3 +2,4 @@
 .scala-build/
 .vscode/
 .metals/metals.log
+.bsp/
