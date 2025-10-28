@@ -1,0 +1,25 @@
+[error] /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/test/scala/preprocessorTest.scala:27:14: not found: type preprocessor
+[error]     test(new preprocessor(width = 0)) { dut =>
+[error]              ^
+[error] /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/test/scala/preprocessorTest.scala:27:27: not found: value width
+[error]     test(new preprocessor(width = 0)) { dut =>
+[error]                           ^
+[error] /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/test/scala/preprocessorTest.scala:50:14: not found: type preprocessor
+[error]     test(new preprocessor(width = 1)) { dut =>
+[error]              ^
+[error] /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/test/scala/preprocessorTest.scala:50:27: not found: value width
+[error]     test(new preprocessor(width = 1)) { dut =>
+[error]                           ^
+[error] /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/test/scala/preprocessorTest.scala:75:14: not found: type preprocessor
+[error]     test(new preprocessor(width = 3)) { dut =>
+[error]              ^
+[error] /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/test/scala/preprocessorTest.scala:75:27: not found: value width
+[error]     test(new preprocessor(width = 3)) { dut =>
+[error]                           ^
+[error] /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/test/scala/preprocessorTest.scala:108:14: not found: type preprocessor
+[error]     test(new preprocessor(width = 4)) { dut =>
+[error]              ^
+[error] /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/test/scala/preprocessorTest.scala:108:27: not found: value width
+[error]     test(new preprocessor(width = 4)) { dut =>
+[error]                           ^
+[error] 8 errors found

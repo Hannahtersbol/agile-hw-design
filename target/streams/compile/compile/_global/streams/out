@@ -1,0 +1,7 @@
+[error] /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala:13:33: not found: type compressor
+[error]     val compressor = Module(new compressor())
+[error]                                 ^
+[error] /Users/HannahTersbol/Desktop/Agil Hardware Design/agile-hw-design/src/main/scala/sha256.scala:14:31: not found: type expander
+[error]     val expander = Module(new expander())
+[error]                               ^
+[error] two errors found
