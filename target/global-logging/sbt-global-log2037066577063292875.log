@@ -1,0 +1,18 @@
+[debug] > Exec(sbtStashOnFailure, None, None)
+[debug] > Exec(sbtMapExec 108 __c162c8df-bd44-4911-96c7-9069360b4b80, None, None)
+[debug] > Exec(bspScalaMainClasses file:/Users/HannahTersbol/Desktop/Agil%20Hardware%20Design/agile-hw-design/#agile-hw-design/Test, Some(__c162c8df-bd44-4911-96c7-9069360b4b80), Some(CommandSource(network-1)))
+[debug] jsonRpcNotify: JsonRpcNotificationMessage(2.0, build/logMessage, {"type":4,"message":"Processing buildTarget/scalaMainClasses"})
+[debug] Evaluating tasks: bspScalaMainClasses
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[debug] jsonRpcNotify: JsonRpcNotificationMessage(2.0, build/taskStart, {"taskId":{"id":"89","parents":[]},"eventTime":1762263425387,"message":"Compiling agile-hw-design","dataKind":"compile-task","data":{"target":{"uri":"file:/Users/HannahTersbol/Desktop/Agil%20Hardware%20Design/agile-hw-design/#agile-hw-design/Compile"}}})
+[debug] jsonRpcNotify: JsonRpcNotificationMessage(2.0, build/taskFinish, {"taskId":{"id":"89","parents":[]},"eventTime":1762263425391,"message":"Compiled agile-hw-design","status":1,"dataKind":"compile-report","data":{"target":{"uri":"file:/Users/HannahTersbol/Desktop/Agil%20Hardware%20Design/agile-hw-design/#agile-hw-design/Compile"},"errors":0,"warnings":0,"time":4}})
+[debug] jsonRpcNotify: JsonRpcNotificationMessage(2.0, build/taskStart, {"taskId":{"id":"90","parents":[]},"eventTime":1762263425396,"message":"Compiling agile-hw-design-test","dataKind":"compile-task","data":{"target":{"uri":"file:/Users/HannahTersbol/Desktop/Agil%20Hardware%20Design/agile-hw-design/#agile-hw-design/Test"}}})
+[debug] jsonRpcNotify: JsonRpcNotificationMessage(2.0, build/taskFinish, {"taskId":{"id":"90","parents":[]},"eventTime":1762263425400,"message":"Compiled agile-hw-design-test","status":1,"dataKind":"compile-report","data":{"target":{"uri":"file:/Users/HannahTersbol/Desktop/Agil%20Hardware%20Design/agile-hw-design/#agile-hw-design/Test"},"errors":0,"warnings":0,"time":4}})
+[success] Total time: 0 s, completed 4. nov. 2025 14.37.05
+[debug] > Exec(sbtCompleteExec 108, None, None)
+[debug] > Exec(resumeFromFailure, None, None)
+[debug] > Exec(sbtPopOnFailure, None, None)
+[debug] > Exec(sbtReportResult 108, Some(108), Some(CommandSource(network-1)))
+[debug] unmatched Processing event for requestId Some(108): None
+[debug] unmatched json response for requestId Some(108): {"status":"Done","channelName":"network-1","execId":"108","commandQueue":["shell"],"exitCode":0}
+[debug] > Exec(shell, None, None)
