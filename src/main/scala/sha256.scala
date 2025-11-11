@@ -1,12 +1,26 @@
 import chisel3._
 import chisel3.util._
 
+
 class sha256(val width: Int = 8) extends Module {
   val io = IO(new Bundle {
-    val password = Input(UInt(32.W))
-    val collected = Output(UInt(512.W))
-    val colLength = Output(UInt(32.W))
+    val password = Input(UInt((width * 8).W))
+    val w_out    = Output(Vec(64, UInt(32.W))) // Final output: expanded message words
   })
+
+  // Instantiate modules
+  val preprocessor = Module(new preprocessor(width))
+  val expander     = Module(new Expander())
+
+  // Connect preprocessor
+  preprocessor.io.password := io.password
+
+  // Connect expander
+  expander.io.block := preprocessor.io.block
+
+  // Output from expander becomes the sha256 output
+  io.w_out := expander.io.w
+
 
   // SHA-256 initial hash values
   val h0 = RegInit("h6a09e667".U(32.W))
@@ -38,15 +52,4 @@ class sha256(val width: Int = 8) extends Module {
     "h748f82ee".U(32.W), "h78a5636f".U(32.W), "h84c87814".U(32.W), "h8cc70208".U(32.W), 
     "h90befffa".U(32.W), "ha4506ceb".U(32.W), "hbef9a3f7".U(32.W), "hc67178f2".U(32.W)
   ))
-
-    //importing modules
-    val preprocessor = Module(new preprocessor(width))
-    // val compressor = Module(new compressor())
-    // val expander = Module(new expander())
-
-
-    // Connect the preprocessor module
-    preprocessor.io.password := io.password
-    io.collected := preprocessor.io.block
-    io.colLength := 0.U  // Placeholder
 }

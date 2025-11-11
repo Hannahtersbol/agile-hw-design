@@ -25,14 +25,7 @@ class preprocessor(val width: Int = 8) extends Module {
   val K = (447.U - L) % 512.U
 
   // Structure: <password> 1 <K zeros> <L as 64-bit>
-  // Build the padded message when password is received
-  when (inputReceived) {
-    // Build from right to left (LSB to MSB):
-    // Bits [63:0] = Length (L)
-    // Bits [63+K:64] = zeros (implicitly 0)
-    // Bit [64+K] = 1
-    // Bits [511:65+K] = password
-    
+  when (inputReceived) {    
     val totalShift = K + 64.U
     
     // Append '1' bit to password, then shift to correct position

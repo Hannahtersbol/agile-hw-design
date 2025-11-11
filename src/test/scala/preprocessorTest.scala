@@ -6,7 +6,7 @@ import org.scalatest.flatspec.AnyFlatSpec
 class preprocessorTest extends AnyFlatSpec with ChiselScalatestTester {
   behavior of "preprocessor"
 
-  // Pure Scala helper for expected block (no hardware created).
+  // Scala helper for expected block.
   private def expectedBlock(widthBytes: Int, password: BigInt): BigInt = {
     val L  = BigInt(widthBytes * 8)                // message length in bits
     val K0 = (BigInt(447) - L) % BigInt(512)
@@ -62,13 +62,33 @@ class preprocessorTest extends AnyFlatSpec with ChiselScalatestTester {
     }
   }
 
-    it should "pad an 11-byte input \"hello there\"" in {
+      it should "pad an 11-byte input \"hello there\"" in {
     test(new preprocessor(width = 11)) { dut =>
       val pw = BigInt("68656c6c6f207468657265", 16)
       dut.io.password.poke(pw.U)
       dut.clock.step(); dut.clock.step()
       val exp = expectedBlock(11, pw)
       dut.io.block.expect(exp.U(512.W))
+      //print line to see the padded block
+      println(f"Padded block: 0x${dut.io.block.peek().litValue}%0128x")
+    }
+  }
+
+  it should "pad an 11-byte input \"hello there\" using binary input" in {
+    test(new preprocessor(width = 11)) { dut =>
+      // "hello there" in binary (88 bits = 11 bytes)
+      val pwBinary = "0110100001100101011011000110110001101111001000000111010001101000011001010111001001100101"
+      val pw = BigInt(pwBinary, 2)  // Parse as binary (base 2)
+      dut.io.password.poke(pw.U)
+      dut.clock.step(); dut.clock.step()
+      val exp = expectedBlock(11, pw)
+      dut.io.block.expect(exp.U(512.W))
+      
+      // Print with proper formatting - pad to correct bit width
+      val blockValue = dut.io.block.peek().litValue
+      println(f"Padded block (hex): 0x${blockValue}%0128x")
+      println(s"Padded block (bin): ${blockValue.toString(2).reverse.padTo(512, '0').reverse}")
+      println(s"Input password (bin): ${pw.toString(2).reverse.padTo(88, '0').reverse}")
     }
   }
 }
