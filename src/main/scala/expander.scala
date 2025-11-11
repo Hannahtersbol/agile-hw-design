@@ -24,7 +24,7 @@ class Expander extends Module {
     // xor: ^
     val s0 = rotateRight(w15, 7.U) ^ rotateRight(w15, 18.U) ^ (w15 >> 3.U)
     val s1 = rotateRight(w2, 17.U) ^ rotateRight(w2, 19.U) ^ (w2 >> 10.U)
-    w(i) := s1 +% w(i - 7) +% s0 +% w(i - 15)
+    w(i) := s1 +% w(i - 7) +% s0 +% w(i - 16)
   }
 
   io.w := w
