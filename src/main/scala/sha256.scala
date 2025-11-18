@@ -23,5 +23,5 @@ class sha256(val width: Int = 8) extends Module {
   compressor.io.block := expander.io.w
 
   // Output from expander becomes the sha256 output
-  io.w_out := expander.io.w
+  io.w_out := compressor.io.hash_out
 }

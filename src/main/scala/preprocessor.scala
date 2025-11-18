@@ -3,8 +3,10 @@ import chisel3.util._
 
 class preprocessor(val width: Int = 8) extends Module {
   val io = IO(new Bundle {
+    val enable = Input(Bool())
     val password = Input(UInt(32.W))
     val block = Output(UInt(512.W))
+    val finished = Output(Bool())
   })
 
   val passwordBits = width * 8  // Message length in bits
@@ -18,14 +20,14 @@ class preprocessor(val width: Int = 8) extends Module {
     inputReceived := true.B
   }
 
-  // Calculate the actual message length in bits  
+  // Calculate the actual message length in bits
   val L = passwordBits.U  // Message length in bits
 
   // Calculate K = (447 - L) mod 512
   val K = (447.U - L) % 512.U
 
   // Structure: <password> 1 <K zeros> <L as 64-bit>
-  when (inputReceived) {    
+  when (inputReceived) {
     val totalShift = K + 64.U
     
     // Append '1' bit to password, then shift to correct position
