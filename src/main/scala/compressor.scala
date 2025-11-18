@@ -4,15 +4,14 @@ import chisel3.util._
 class compressor(val width: Int = 8) extends Module {
 val io = IO(new Bundle {
 	val enable = Input(Bool())
-	val block  = Input(Vec(64, UInt(32.W))) // expect expanded W[0..63]
+	val block  = Input(Vec(64, UInt(32.W)))
 	val finished = Output(Bool())
-	val hash_out = Output(Vec(8, UInt(32.W))) // Final hash output H[0..7]
+	val hash_out = Output(Vec(8, UInt(32.W)))
 })
 
 // register to hold final hash; assign H to this register in the Finished state
 private val hash_out_reg = RegInit(VecInit(Seq.fill(8)(0.U(32.W))))
 io.hash_out := hash_out_reg
-  })
 
   private val H_values = Seq(
     0x6a09e667L, 0xbb67ae85L, 0x3c6ef372L, 0xa54ff53aL,
@@ -58,7 +57,7 @@ io.hash_out := hash_out_reg
   private object State extends ChiselEnum {
     val Idle, Working, Finished = Value
   }
-  val state = RegInit(State.Idle)
+  private val state = RegInit(State.Idle)
 
   // finished output reflects Finished state
   io.finished := (state === State.Finished)
@@ -92,6 +91,7 @@ io.hash_out := hash_out_reg
 		blockRegs(i) := io.block(i)
 	  }
 	}
+  
 	val w_i = blockRegs(loop_counter)
       val temp1 = h + S1 + ch + K(loop_counter) + w_i
       val S0 = bigSigma0(a)
@@ -134,3 +134,4 @@ io.hash_out := hash_out_reg
   when(state === State.Finished) {
     hash_out_reg := H
   }
+}
