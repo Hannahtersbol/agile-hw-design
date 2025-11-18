@@ -4,7 +4,7 @@ import chisel3.util._
 class Expander extends Module {
   val io = IO(new Bundle {
     val block = Input(UInt(512.W))
-    val enable = INput(Bool())
+    val enable = Input(Bool())
     val w = Output(Vec(64, UInt(32.W)))
     val finished = Output(Bool())
   })
