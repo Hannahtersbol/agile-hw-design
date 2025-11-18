@@ -3,8 +3,10 @@ import chisel3.util._
 
 class compressor(val width: Int = 8) extends Module {
 val io = IO(new Bundle {
+  // inputs ----------------
 	val enable = Input(Bool())
-	val block  = Input(Vec(64, UInt(32.W)))
+	val w  = Input(Vec(64, UInt(32.W)))
+  // outputs ----------------
 	val finished = Output(Bool())
 	val hash_out = Output(Vec(8, UInt(32.W)))
 })

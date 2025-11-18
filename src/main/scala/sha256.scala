@@ -4,8 +4,13 @@ import chisel3.util._
 
 class sha256(val width: Int = 8) extends Module {
   val io = IO(new Bundle {
-    val password = Input(UInt((width * 8).W))
-    val w_out    = Output(Vec(64, UInt(32.W))) // Final output: expanded message words
+    val message_len = Input(UInt(32.W))
+    val message = Input(UInt(32.W))
+    val key = Input(UInt(32.W))
+    val enable = Input(Bool())
+
+    val hash_out = Output(Vec(8, UInt(32.W)))
+    val finished = Output(Bool())
   })
 
   // Instantiate modules
