@@ -6,7 +6,7 @@ class preprocessor(val width: Int = 8) extends Module {
     // inputs ----------------
     val enable = Input(Bool())
     val message_len = Input(UInt(32.W))
-    val message = Input(UInt(32.W))
+    val message_word = Input(UInt(32.W))
     val key = Input(UInt(32.W))
     // outputs ----------------
     val block = Output(UInt(512.W))
@@ -14,6 +14,7 @@ class preprocessor(val width: Int = 8) extends Module {
     // comp logic ----------
     val allow_send = Input(Bool())
     val last_block = Output(Bool())
+    val recieved = Output(Bool())
   })
 
   val passwordBits = width * 8  // Message length in bits

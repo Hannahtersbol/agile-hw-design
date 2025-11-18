@@ -31,5 +31,8 @@ class Expander extends Module {
     w(i) := s1 +% w(i - 7) +% s0 +% w(i - 16)
   }
 
-  io.w := w
+  val wOut = RegInit(VecInit(Seq.fill(64)(0.U(32.W))))
+  wOut := w
+  io.w := wOut
+  io.finished := io.enable
 }
