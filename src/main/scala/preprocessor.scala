@@ -3,9 +3,9 @@ import chisel3.util._
 
 class preprocessor(val width: Int = 8) extends Module {
   val io = IO(new Bundle {
-  val password = Input(UInt((width * 8).W))
-  val block    = Output(UInt(512.W))
-})
+    val password = Input(UInt(32.W))
+    val block = Output(UInt(512.W))
+  })
 
   val passwordBits = width * 8  // Message length in bits
   val passwordReg = RegInit(0.U(passwordBits.W))
