@@ -40,7 +40,7 @@ class sha256(val width: Int = 8) extends Module {
   expander.io.enable := en_exp
   expander.io.block := preprocessor.io.block
   compressor.io.enable := en_comp
-  compressor.io.block := expander.io.w
+  compressor.io.w := expander.io.w
   io.hash_out := compressor.io.hash_out
   io.finished := (state === State.Finished)
 

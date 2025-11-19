@@ -24,7 +24,7 @@ class preprocessor(val width: Int = 8) extends Module {
 
   // Receive the password input (truncate to actual width)
   when (!inputReceived) {
-    passwordReg := io.password(passwordBits - 1, 0)
+    passwordReg := io.message_word(passwordBits - 1, 0)
     inputReceived := true.B
   }
 
