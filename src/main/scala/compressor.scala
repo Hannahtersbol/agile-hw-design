@@ -49,7 +49,9 @@ class compressor(val width: Int = 8) extends Module {
 
   // Hash state H[0..7]
   val H = RegInit(VecInit(H_values))
-
+  when(io.reset_hash){
+    H := VecInit(H_values)
+  }
   // loop counter 0..63
   val loop_counter = RegInit(0.U(log2Ceil(64).W))
 
