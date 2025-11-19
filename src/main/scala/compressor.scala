@@ -2,19 +2,16 @@ import chisel3._
 import chisel3.util._
 
 class compressor(val width: Int = 8) extends Module {
-val io = IO(new Bundle {
-  // inputs ----------------
-	val enable = Input(Bool())
-	val w  = Input(Vec(64, UInt(32.W)))
-  // outputs ----------------
-	val finished = Output(Bool())
-	val hash_out = Output(Vec(8, UInt(32.W)))
-})
-
-// register to hold final hash; assign H to this register in the Finished state
-private val hash_out_reg = RegInit(VecInit(Seq.fill(8)(0.U(32.W))))
-io.hash_out := hash_out_reg
-
+  val io = IO(new Bundle {
+    // inputs ----------------
+  	val enable = Input(Bool())
+    val w  = Input(Vec(64, UInt(32.W)))
+    val reset_hash = Input(Bool())
+    // outputs ----------------
+  	val finished = Output(Bool())
+  	val hash_out = Output(Vec(8, UInt(32.W)))
+  })
+  // values needed for SHA-256
   private val H_values = Seq(
     0x6a09e667L, 0xbb67ae85L, 0x3c6ef372L, 0xa54ff53aL,
     0x510e527fL, 0x9b05688cL, 0x1f83d9abL, 0x5be0cd19L
@@ -30,7 +27,6 @@ io.hash_out := hash_out_reg
     0x19a4c116L, 0x1e376c08L, 0x2748774cL, 0x34b0bcb5L, 0x391c0cb3L, 0x4ed8aa4aL, 0x5b9cca4fL, 0x682e6ff3L,
     0x748f82eeL, 0x78a5636fL, 0x84c87814L, 0x8cc70208L, 0x90befffaL, 0xa4506cebL, 0xbef9a3f7L, 0xc67178f2L
   ).map(_.U(32.W)))
-
   // Helper functions for SHA-256 operations
   private def rotateRight(x: UInt, n: Int): UInt = (x >> n) | (x << (32 - n))
   private def chF(x: UInt, y: UInt, z: UInt): UInt = (x & y) ^ (~x & z)
@@ -49,6 +45,7 @@ io.hash_out := hash_out_reg
   val f = RegInit(0.U(32.W))
   val g = RegInit(0.U(32.W))
   val h = RegInit(0.U(32.W))
+  val blockRegs = RegInit(VecInit(Seq.fill(64)(0.U(32.W))))
 
   // Hash state H[0..7]
   val H = RegInit(VecInit(H_values))
@@ -63,6 +60,9 @@ io.hash_out := hash_out_reg
 
   // finished output reflects Finished state
   io.finished := (state === State.Finished)
+  when(state === State.Finished) {
+    io.hash_out := H
+  }
 
   // Main state machine
   switch(state) {
@@ -77,6 +77,10 @@ io.hash_out := hash_out_reg
         f := H(5)
         g := H(6)
         h := H(7)
+        // load input w into registers
+        for (i <- 0 until 64) {
+		      blockRegs(i) := io.w(i)
+	      }
 
         loop_counter := 0.U
         state := State.Working
@@ -86,15 +90,7 @@ io.hash_out := hash_out_reg
     is(State.Working) {
       val S1 = bigSigma1(e)
       val ch = chF(e, f, g)
-	// store input block into registers on the first round, then read from those regs
-	val blockRegs = RegInit(VecInit(Seq.fill(64)(0.U(32.W))))
-	when(loop_counter === 0.U) {
-	  for (i <- 0 until 64) {
-		blockRegs(i) := io.block(i)
-	  }
-	}
-  
-	val w_i = blockRegs(loop_counter)
+	    val w_i = blockRegs(loop_counter)
       val temp1 = h + S1 + ch + K(loop_counter) + w_i
       val S0 = bigSigma0(a)
       val maj = majF(a, b, c)
@@ -132,8 +128,5 @@ io.hash_out := hash_out_reg
         state := State.Idle
       }
     }
-  }
-  when(state === State.Finished) {
-    hash_out_reg := H
   }
 }
