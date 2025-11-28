@@ -23,14 +23,7 @@ class preprocessorTest extends AnyFlatSpec with ChiselScalatestTester {
   it should "pad an 8-byte input correctly (two-cycle latency)" in {
     test(new preprocessor(width = 8)) { dut =>
       val pw = BigInt("6162636465666768", 16)
-      
-      // Initialize inputs
-      dut.io.enable.poke(true.B)
-      dut.io.message_len.poke(8.U)  // 8 bytes
       dut.io.message_word.poke(pw.U)
-      dut.io.key.poke(0.U)
-      dut.io.allow_send.poke(false.B)
-      
       dut.clock.step(); dut.clock.step()
       val exp = expectedBlock(8, pw)
       dut.io.block.expect(exp.U(512.W))
@@ -40,13 +33,7 @@ class preprocessorTest extends AnyFlatSpec with ChiselScalatestTester {
   it should "pad a 1-byte input" in {
     test(new preprocessor(width = 1)) { dut =>
       val pw = BigInt(0x41) // 'A'
-      
-      dut.io.enable.poke(true.B)
-      dut.io.message_len.poke(1.U)
       dut.io.message_word.poke(pw.U)
-      dut.io.key.poke(0.U)
-      dut.io.allow_send.poke(false.B)
-      
       dut.clock.step(); dut.clock.step()
       val exp = expectedBlock(1, pw)
       dut.io.block.expect(exp.U(512.W))
@@ -57,13 +44,7 @@ class preprocessorTest extends AnyFlatSpec with ChiselScalatestTester {
     Seq(1, 4, 8, 16).foreach { w =>
       test(new preprocessor(width = w)) { dut =>
         val pw = BigInt(0)
-        
-        dut.io.enable.poke(true.B)
-        dut.io.message_len.poke(w.U)
         dut.io.message_word.poke(pw.U)
-        dut.io.key.poke(0.U)
-        dut.io.allow_send.poke(false.B)
-        
         dut.clock.step(); dut.clock.step()
         val exp = expectedBlock(w, pw)
         dut.io.block.expect(exp.U(512.W))
@@ -74,13 +55,7 @@ class preprocessorTest extends AnyFlatSpec with ChiselScalatestTester {
   it should "pad a non-aligned 5-byte input" in {
     test(new preprocessor(width = 5)) { dut =>
       val pw = BigInt("0102030405", 16)
-      
-      dut.io.enable.poke(true.B)
-      dut.io.message_len.poke(5.U)
       dut.io.message_word.poke(pw.U)
-      dut.io.key.poke(0.U)
-      dut.io.allow_send.poke(false.B)
-      
       dut.clock.step(); dut.clock.step()
       val exp = expectedBlock(5, pw)
       dut.io.block.expect(exp.U(512.W))
@@ -90,13 +65,7 @@ class preprocessorTest extends AnyFlatSpec with ChiselScalatestTester {
   it should "pad an 11-byte input \"hello there\"" in {
     test(new preprocessor(width = 11)) { dut =>
       val pw = BigInt("68656c6c6f207468657265", 16)
-      
-      dut.io.enable.poke(true.B)
-      dut.io.message_len.poke(11.U)
       dut.io.message_word.poke(pw.U)
-      dut.io.key.poke(0.U)
-      dut.io.allow_send.poke(false.B)
-      
       dut.clock.step(); dut.clock.step()
       val exp = expectedBlock(11, pw)
       dut.io.block.expect(exp.U(512.W))
@@ -110,13 +79,7 @@ class preprocessorTest extends AnyFlatSpec with ChiselScalatestTester {
       // "hello there" in binary (88 bits = 11 bytes)
       val pwBinary = "0110100001100101011011000110110001101111001000000111010001101000011001010111001001100101"
       val pw = BigInt(pwBinary, 2)  // Parse as binary (base 2)
-      
-      dut.io.enable.poke(true.B)
-      dut.io.message_len.poke(11.U)
       dut.io.message_word.poke(pw.U)
-      dut.io.key.poke(0.U)
-      dut.io.allow_send.poke(false.B)
-      
       dut.clock.step(); dut.clock.step()
       val exp = expectedBlock(11, pw)
       dut.io.block.expect(exp.U(512.W))

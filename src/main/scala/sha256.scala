@@ -22,7 +22,7 @@ class sha256(val width: Int = 8) extends Module {
 
   // Instantiate modules
   val preprocessor = Module(new preprocessor(width))
-  val expander     = Module(new Expander())
+  val expander     = Module(new Expander(false))
   val compressor   = Module(new compressor())
 
   // Control signals

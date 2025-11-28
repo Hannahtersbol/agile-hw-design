@@ -6,17 +6,54 @@ class ExpanderTest extends AnyFlatSpec with ChiselScalatestTester {
 
   behavior of "Expander"
 
-  // Same expectedBlock you showed:
+  private def testHelper(message: String,double:Boolean): TestResult = {
+    test(new Expander(double)) { dut =>
+      // "hello there" in binary (88 bits = 11 bytes)
+      val pwBinary = message
+
+      val bytes = pwBinary.length / 8
+      val msg = BigInt(pwBinary, 2)
+      val blockExp = expectedBlock(bytes, msg)
+      val Wexp = expectedW(blockExp)
+
+      dut.io.block.poke(blockExp.U)
+      dut.io.enable.poke(true.B)
+      var cycle = 0
+      while (!dut.io.finished.peek().litToBoolean) {
+        // run clock until finished
+        dut.clock.step()
+        cycle += 1
+      }
+      // println(f"Input block: $block")
+
+      for (i <- 0 until 64) {
+        dut.io.w(i).expect(
+            Wexp(i).U,
+            s"w($i) mismatch, expected ${Wexp(i)} got ${dut.io.w(i).peek().litValue}"
+          )
+
+        // Printing of
+        // val wVal = dut.io.w(i).peek().litValue
+        // println(s"Padded block (bin): w($i) = ${wVal.toString(2).reverse.padTo(32, '0').reverse}")
+      }
+      // One cycle for w[0..15] + 48 cycles for the calculation of w[16..63]
+      assert(cycle == 49)
+      // println(s"Number of Cycles: $cycle")
+    }
+  }
+
+  // Preprocessor
+  // Calculating the expected padded block for a given input password
   private def expectedBlock(widthBytes: Int, password: BigInt): BigInt = {
-    val L  = BigInt(widthBytes * 8)
+    val L = BigInt(widthBytes * 8)
     val K0 = (BigInt(447) - L) % BigInt(512)
-    val K  = if (K0 < 0) K0 + 512 else K0
+    val K = if (K0 < 0) K0 + 512 else K0
     val totalShiftInt = (K + 64).toInt
 
-    val messageWith1   = (password << 1) | 1
+    val messageWith1 = (password << 1) | 1
     val messageShifted = messageWith1 << totalShiftInt
-    val out            = messageShifted | L
-    val mask512        = (BigInt(1) << 512) - 1
+    val out = messageShifted | L
+    val mask512 = (BigInt(1) << 512) - 1
     out & mask512
   }
 
@@ -33,40 +70,29 @@ class ExpanderTest extends AnyFlatSpec with ChiselScalatestTester {
   private def sigma1(x: BigInt): BigInt =
     rotr32(x, 17) ^ rotr32(x, 19) ^ (x >> 10)
 
-  private def schedule(block: BigInt): Seq[BigInt] = {
+  // Expander
+  // Calculating the expected W[0..63] for a given padded block
+  private def expectedW(block: BigInt): Seq[BigInt] = {
     val W = Array.fill[BigInt](64)(BigInt(0))
 
     // w[0..15] according to your Expander's indexing:
     for (i <- 0 until 16) {
-      val hi = 511 - 32*i
+      val hi = 511 - 32 * i
       val lo = hi - 31
       W(i) = (block >> lo) & mask32
     }
 
     // w[16..63]
     for (i <- 16 until 64) {
-      val s0 = sigma0(W(i-15))
-      val s1 = sigma1(W(i-2))
-      W(i) = (W(i-16) + s0 + W(i-7) + s1) & mask32
+      val s0 = sigma0(W(i - 15))
+      val s1 = sigma1(W(i - 2))
+      W(i) = (W(i - 16) + s0 + W(i - 7) + s1) & mask32
     }
 
     W.toSeq
   }
 
-  it should "match the golden message schedule for a padded block" in {
-    test(new Expander) { dut =>
-      // Example message: 3 bytes: 0x616263 ("abc")
-      val bytes = 3
-      val msg   = BigInt("616263", 16) // BigInt of your raw message
-      val block = expectedBlock(bytes, msg)
-      val Wexp  = schedule(block)
-
-      dut.io.block.poke(block.U)
-      dut.clock.step()
-
-      for (i <- 0 until 64) {
-        dut.io.w(i).expect(Wexp(i).U, s"w($i) mismatch")
-      }
-    }
+  it should "calculate the right w[0..63] from the message 'Hello there' in binary" in {
+    testHelper("0110100001100101011011000110110001101111001000000111010001101000011001010111001001100101", false)
   }
 }
