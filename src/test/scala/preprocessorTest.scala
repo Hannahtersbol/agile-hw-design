@@ -23,6 +23,7 @@ class preprocessorTest extends AnyFlatSpec with ChiselScalatestTester {
   it should "pad an 8-byte input correctly (two-cycle latency)" in {
     test(new preprocessor(width = 8)) { dut =>
       val pw = BigInt("6162636465666768", 16)
+      dut.io.enable.poke(true.B)
       dut.io.message_word.poke(pw.U)
       dut.clock.step(); dut.clock.step()
       val exp = expectedBlock(8, pw)
@@ -33,6 +34,7 @@ class preprocessorTest extends AnyFlatSpec with ChiselScalatestTester {
   it should "pad a 1-byte input" in {
     test(new preprocessor(width = 1)) { dut =>
       val pw = BigInt(0x41) // 'A'
+      dut.io.enable.poke(true.B)
       dut.io.message_word.poke(pw.U)
       dut.clock.step(); dut.clock.step()
       val exp = expectedBlock(1, pw)
@@ -44,6 +46,7 @@ class preprocessorTest extends AnyFlatSpec with ChiselScalatestTester {
     Seq(1, 4, 8, 16).foreach { w =>
       test(new preprocessor(width = w)) { dut =>
         val pw = BigInt(0)
+        dut.io.enable.poke(true.B)
         dut.io.message_word.poke(pw.U)
         dut.clock.step(); dut.clock.step()
         val exp = expectedBlock(w, pw)
@@ -55,6 +58,7 @@ class preprocessorTest extends AnyFlatSpec with ChiselScalatestTester {
   it should "pad a non-aligned 5-byte input" in {
     test(new preprocessor(width = 5)) { dut =>
       val pw = BigInt("0102030405", 16)
+      dut.io.enable.poke(true.B)
       dut.io.message_word.poke(pw.U)
       dut.clock.step(); dut.clock.step()
       val exp = expectedBlock(5, pw)
@@ -65,6 +69,7 @@ class preprocessorTest extends AnyFlatSpec with ChiselScalatestTester {
   it should "pad an 11-byte input \"hello there\"" in {
     test(new preprocessor(width = 11)) { dut =>
       val pw = BigInt("68656c6c6f207468657265", 16)
+      dut.io.enable.poke(true.B)
       dut.io.message_word.poke(pw.U)
       dut.clock.step(); dut.clock.step()
       val exp = expectedBlock(11, pw)
@@ -79,6 +84,7 @@ class preprocessorTest extends AnyFlatSpec with ChiselScalatestTester {
       // "hello there" in binary (88 bits = 11 bytes)
       val pwBinary = "0110100001100101011011000110110001101111001000000111010001101000011001010111001001100101"
       val pw = BigInt(pwBinary, 2)  // Parse as binary (base 2)
+      dut.io.enable.poke(true.B)
       dut.io.message_word.poke(pw.U)
       dut.clock.step(); dut.clock.step()
       val exp = expectedBlock(11, pw)
