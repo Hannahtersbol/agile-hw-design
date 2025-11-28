@@ -62,7 +62,7 @@ class preprocessorTest extends AnyFlatSpec with ChiselScalatestTester {
     }
   }
 
-      it should "pad an 11-byte input \"hello there\"" in {
+  it should "pad an 11-byte input \"hello there\"" in {
     test(new preprocessor(width = 11)) { dut =>
       val pw = BigInt("68656c6c6f207468657265", 16)
       dut.io.message_word.poke(pw.U)
