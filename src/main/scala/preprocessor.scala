@@ -6,7 +6,7 @@ class preprocessor(val width: Int = 8) extends Module {
     // inputs ----------------
     val enable = Input(Bool())
     val message_len = Input(UInt(32.W))
-    val message_word = Input(UInt(32.W))
+    val message_word = Input(UInt((width * 8).W))  // Make it match the width parameter
     val key = Input(UInt(32.W))
     // outputs ----------------
     val block = Output(UInt(512.W))
@@ -22,9 +22,9 @@ class preprocessor(val width: Int = 8) extends Module {
   val inputReceived = RegInit(false.B)
   val paddedMessage = RegInit(0.U(512.W))
 
-  // Receive the password input (truncate to actual width)
-  when (!inputReceived) {
-    passwordReg := io.message_word(passwordBits - 1, 0)
+  // Receive the password input
+  when (!inputReceived && io.enable) {
+    passwordReg := io.message_word
     inputReceived := true.B
   }
 
@@ -46,6 +46,10 @@ class preprocessor(val width: Int = 8) extends Module {
     paddedMessage := messageShifted | L
   }
 
-    io.block := paddedMessage
-
+  io.block := paddedMessage
+  
+  // Initialize output signals
+  io.finished := inputReceived
+  io.recieved := inputReceived
+  io.last_block := true.B  // Single block for now
 }
