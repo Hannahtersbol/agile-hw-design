@@ -44,7 +44,8 @@ class Expander(double: Boolean) extends Module {
     is(State.working) {
       // Compute w[16..63]
       // if double is true, compute two words per cycle
-      var stopValue = 63.U
+      var stopValue = if (double) 62.U else 63.U
+      val plusI = if (double) 2.U else 1.U
       if (double) {
         val w15 = w(i - 15.U)
         val w2 = w(i - 2.U)
@@ -59,7 +60,6 @@ class Expander(double: Boolean) extends Module {
         val s0_2 = rotateRight(w15_2, 7.U) ^ rotateRight(w15_2, 18.U) ^ (w15_2 >> 3.U)
         val s1_2 = rotateRight(w2_2, 17.U) ^ rotateRight(w2_2, 19.U) ^ (w2_2 >> 10.U)
         w(i + 1.U) := s1_2 +% w(i + 1.U - 7.U) +% s0_2 +% w15
-        stopValue = 62.U
       } else {
         val w15 = w(i - 15.U)
         val w2 = w(i - 2.U)
@@ -67,6 +67,7 @@ class Expander(double: Boolean) extends Module {
         val s0 = rotateRight(w15, 7.U) ^ rotateRight(w15, 18.U) ^ (w15 >> 3.U)
         val s1 = rotateRight(w2, 17.U) ^ rotateRight(w2, 19.U) ^ (w2 >> 10.U)
         w(i) := s1 +% w(i - 7.U) +% s0 +% w(i - 16.U)
+        
       }
 
       when(i === stopValue) {
@@ -74,7 +75,7 @@ class Expander(double: Boolean) extends Module {
         // reset for next time
         i := 16.U 
       } .otherwise {
-        i := i + 1.U
+        i := i + plusI
       }
 
     }
