@@ -1,14 +1,13 @@
-# .github/workflows/ci.yml
 name: CI
 
 on:
   push:
     branches:
-      - main        # run on pushes to main
-      - "**"        # and on pushes to all other branches
+      - main
+      - "**"
   pull_request:
     branches:
-      - main        # run on PRs that target main
+      - main
 
 jobs:
   preprocessor:
