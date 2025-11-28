@@ -62,9 +62,8 @@ class compressor(val width: Int = 8) extends Module {
 
   // finished output reflects Finished state
   io.finished := (state === State.Finished)
-  when(state === State.Finished) {
-    io.hash_out := H
-  }
+  // Always output the current hash value
+  io.hash_out := H
 
   // Main state machine
   switch(state) {

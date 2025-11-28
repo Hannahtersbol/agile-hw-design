@@ -5,7 +5,7 @@ import chisel3.util._
 class sha256(val width: Int = 8) extends Module {
   val io = IO(new Bundle {
     val message_len = Input(UInt(32.W))
-    val message_word = Input(UInt(32.W))
+    val message_word = Input(UInt((width * 8).W))  // Match the width parameter
     val key = Input(UInt(32.W))
     val enable = Input(Bool())
 
@@ -36,11 +36,13 @@ class sha256(val width: Int = 8) extends Module {
   preprocessor.io.message_word := io.message_word
   preprocessor.io.message_len := io.message_len
   preprocessor.io.key := io.key
+  preprocessor.io.allow_send := false.B  // Not used in single-block mode
   io.recieved := preprocessor.io.recieved
   expander.io.enable := en_exp
   expander.io.block := preprocessor.io.block
   compressor.io.enable := en_comp
   compressor.io.w := expander.io.w
+  compressor.io.reset_hash := (state === State.Idle && io.enable)  // Reset hash when starting new computation
   io.hash_out := compressor.io.hash_out
   io.finished := (state === State.Finished)
 
