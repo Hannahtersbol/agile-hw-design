@@ -19,7 +19,8 @@ object TestHelper {
     out & mask512
   }
 
-   val mask32 = (BigInt(1) << 32) - 1
+  val mask32 = (BigInt(1) << 32) - 1
+  
 
   private def rotr32(x: BigInt, n: Int): BigInt = {
     val xr = x & mask32
@@ -37,11 +38,11 @@ object TestHelper {
   def expectedW(block: BigInt): Seq[BigInt] = {
     val W = Array.fill[BigInt](64)(BigInt(0))
 
-  // If block is a single large integer and this extraction is intentional:
-  // Your current approach is fine, but consider:
-  for (i <- 0 until 16) {
-    W(i) = ((block >> (480 - i * 32)) & mask32).toInt  // explicit cast if needed
-  }
+    // If block is a single large integer and this extraction is intentional:
+    // Your current approach is fine, but consider:
+    for (i <- 0 until 16) {
+      W(i) = ((block >> (480 - i * 32)) & mask32) // explicit cast if needed
+    }
 
     // w[16..63]
     for (i <- 16 until 64) {
