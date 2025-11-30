@@ -61,7 +61,8 @@ class ExpanderTest extends AnyFlatSpec with ChiselScalatestTester {
   it should "calculate the right w[0..63] from 'abc'" in {
     testHelper(
       "011000010110001001100011",
-      false
+      false,
+      2
     )
   }
 
