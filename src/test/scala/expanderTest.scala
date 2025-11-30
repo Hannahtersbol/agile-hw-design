@@ -7,13 +7,17 @@ class ExpanderTest extends AnyFlatSpec with ChiselScalatestTester {
 
   behavior of "Expander"
 
-  private def testHelper(message: String, double: Boolean): TestResult = {
+  private def testHelper(
+      message: String,
+      double: Boolean,
+      radix: Int
+  ): TestResult = {
     test(new Expander(double)) { dut =>
       // "hello there" in binary (88 bits = 11 bytes)
       val pwBinary = message
 
       val bytes = pwBinary.length / 8
-      val msg = BigInt(pwBinary, 2)
+      val msg = BigInt(pwBinary, radix)
       val blockExp = expectedBlock(bytes, msg)
       val Wexp = expectedW(blockExp)
 
@@ -64,14 +68,16 @@ class ExpanderTest extends AnyFlatSpec with ChiselScalatestTester {
   it should "calculate the right w[0..63] from the message 'Hello there' in binary" in {
     testHelper(
       "0110100001100101011011000110110001101111001000000111010001101000011001010111001001100101",
-      false
+      false,
+      2
     )
   }
 
   it should "calculate w[0..63] from the message 'Hello there', in 25 cycles" in {
     testHelper(
       "0110100001100101011011000110110001101111001000000111010001101000011001010111001001100101",
-      true
+      true,
+      2
     )
   }
 
@@ -79,7 +85,8 @@ class ExpanderTest extends AnyFlatSpec with ChiselScalatestTester {
     Seq(true, false).foreach { w =>
       testHelper(
         "001",
-        w
+        w,
+        2
       )
     }
   }
@@ -88,7 +95,8 @@ class ExpanderTest extends AnyFlatSpec with ChiselScalatestTester {
     Seq(true, false).foreach { w =>
       testHelper(
         "0",
-        w
+        w,
+        2
       )
     }
   }
@@ -97,7 +105,8 @@ class ExpanderTest extends AnyFlatSpec with ChiselScalatestTester {
     Seq(true, false).foreach { w =>
       testHelper(
         "000000",
-        w
+        w,
+        2
       )
     }
   }
@@ -106,7 +115,17 @@ class ExpanderTest extends AnyFlatSpec with ChiselScalatestTester {
     Seq(true, false).foreach { w =>
       testHelper(
         "11111",
-        w
+        w,
+        2
+      )
+    }
+  }
+  it should "calculate w[0..63] from message 'abc'" in {
+    Seq(true, false).foreach { w =>
+      testHelper(
+        "abc",
+        w,
+        16
       )
     }
   }
