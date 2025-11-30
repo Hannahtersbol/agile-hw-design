@@ -11,7 +11,6 @@ class sha256(val width: Int = 8) extends Module {
     val hash_out = Output(Vec(8, UInt(32.W)))
     val finished = Output(Bool())
 
-    // For debug
     val recieved = Output(Bool())
   })
 
@@ -20,19 +19,19 @@ class sha256(val width: Int = 8) extends Module {
   }
   private val state = RegInit(State.Idle)
 
-  // === Instantiate modules ===
+  // Instantiate modules
   val preprocessor = Module(new Preprocessor(width))
   val expander     = Module(new Expander(false))
   val compressor   = Module(new compressor())
 
-  // === Control signals ===
+  // Control signals
   val en_pre           = RegInit(false.B)
   val en_exp           = RegInit(false.B)
   val en_comp          = RegInit(false.B)
   val last_block       = RegInit(false.B)
   val reset_hash_pulse = RegInit(false.B)
 
-  // === Connections ===
+  // Connections
   preprocessor.io.enable       := en_pre
   preprocessor.io.message_word := io.message_word
   preprocessor.io.message_len  := io.message_len(15, 0)  // truncate to 16 bits
@@ -53,8 +52,7 @@ class sha256(val width: Int = 8) extends Module {
 
   io.hash_out := compressor.io.hash_out
   io.finished := (state === State.Finished)
-
-  // === State machine ===
+  
   switch(state) {
     is(State.Idle) {
       when(io.enable) {

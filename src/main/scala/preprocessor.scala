@@ -14,7 +14,7 @@ class Preprocessor(width: Int = 16) extends Module {
     val finished      = Output(Bool())
   })
 
-  // === Registers ===
+  //  Registers 
   val messageReg   = RegInit(0.U((width * 8).W))
   val lengthReg    = RegInit(0.U(16.W))
   val inputReceived = RegInit(false.B)
@@ -24,13 +24,13 @@ class Preprocessor(width: Int = 16) extends Module {
   val blockIdx     = RegInit(0.U(2.W))
   val processing   = RegInit(false.B)
 
-  // === Default outputs ===
+  // Default outputs 
   io.block      := 0.U
   io.recieved   := false.B
   io.last_block := false.B
   io.finished   := false.B
 
-  // === Step 1: Capture input message ===
+  // Input message 
   when (io.enable && !inputReceived) {
     messageReg    := io.message_word
     lengthReg     := io.message_len
@@ -38,7 +38,7 @@ class Preprocessor(width: Int = 16) extends Module {
     processing    := true.B
   }
 
-  // === Step 2: Padding and block generation ===
+  // Padding and block generation 
   when (inputReceived && processing) {
     val L_bits = (lengthReg << 3).asUInt  // message length in bits
     val totalBitsNoPad = L_bits + 1.U + 64.U  // message + '1' + length field
@@ -58,12 +58,11 @@ class Preprocessor(width: Int = 16) extends Module {
     processing := false.B
   }
 
-  // === Step 3: Output 512-bit blocks sequentially ===
+  // Output 512-bit blocks sequentially 
   val block0 = paddedAll(1023, 512)
   val block1 = paddedAll(511, 0)
 
-  // For a single 512-bit message, the padded data resides in the lower half.
-  // For two blocks, the first block is the upper half, second is the lower half.
+  // Select current block to output
   val currentBlock = Mux(numBlocks === 1.U, block1, Mux(blockIdx === 0.U, block0, block1))
 
   when (inputReceived && !processing && io.allow_send) {
