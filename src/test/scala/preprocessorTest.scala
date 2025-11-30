@@ -29,6 +29,20 @@ class preprocessorTest extends AnyFlatSpec with ChiselScalatestTester {
     }
   }
 
+  it should "pad abc correctly" in {
+      test(new preprocessor(width = 3)) { dut =>
+        val pw = BigInt("616263", 16)  // "abc"
+        dut.io.enable.poke(true.B)
+        dut.io.message_word.poke(pw.U)
+        dut.clock.step(); dut.clock.step()
+        val exp = expectedBlock(3, pw)
+        val output = dut.io.block.peek().litValue
+        println(s"block of 'abc' (bits):\t${output.toString(2).reverse.padTo(512, '0').reverse}")
+        println(s"should be (bits):\t${exp.toString(2).reverse.padTo(512, '0').reverse}")
+        dut.io.block.expect(exp.U(512.W))
+    }
+  }
+
   it should "pad zero input for multiple widths" in {
     Seq(1, 4, 8, 16).foreach { w =>
       test(new preprocessor(width = w)) { dut =>
