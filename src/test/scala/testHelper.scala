@@ -7,10 +7,15 @@ object TestHelper {
   // Preprocessor
   // Calculating the expected padded block for a given input password
   def expectedBlock(widthBytes: Int, password: BigInt): BigInt = {
-    val L  = BigInt(widthBytes * 8)                // message length in bits
+    // message length in bits
+    val L  = BigInt(widthBytes * 8)                
     val K0 = (BigInt(447) - L) % BigInt(512)
-    val K  = if (K0 < 0) K0 + 512 else K0          // normalize into [0, 511]
-    val totalShiftInt = (K + 64).toInt             // <-- BigInt -> Int for shift distance
+    
+    // normalize into [0, 511]
+    val K  = if (K0 < 0) K0 + 512 else K0          
+    
+    // <-- BigInt -> Int for shift distance
+    val totalShiftInt = (K + 64).toInt             
 
     val messageWith1   = (password << 1) | 1
     val messageShifted = messageWith1 << totalShiftInt
@@ -21,7 +26,6 @@ object TestHelper {
 
   val mask32 = (BigInt(1) << 32) - 1
   
-
   private def rotr32(x: BigInt, n: Int): BigInt = {
     val xr = x & mask32
     ((xr >> n) | (xr << (32 - n))) & mask32
@@ -38,10 +42,9 @@ object TestHelper {
   def expectedW(block: BigInt): Seq[BigInt] = {
     val W = Array.fill[BigInt](64)(BigInt(0))
 
-    // If block is a single large integer and this extraction is intentional:
-    // Your current approach is fine, but consider:
+    // w[0..15]
     for (i <- 0 until 16) {
-      W(i) = ((block >> (480 - i * 32)) & mask32) // explicit cast if needed
+      W(i) = ((block >> (480 - i * 32)) & mask32)
     }
 
     // w[16..63]

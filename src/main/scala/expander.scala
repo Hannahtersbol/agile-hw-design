@@ -33,8 +33,6 @@ class Expander(double: Boolean) extends Module {
   switch(state) {
     is(State.Idle) {
       when(io.enable) {
-        // TODO assign correctly
-        // w := io.block.asTypeOf(Vec(16, UInt(32.W))) // first 16 words from input block
         for (i <- 0 until 16) {
           w(i) := io.block(511 - i * 32, 480 - i * 32)
         }
@@ -72,7 +70,6 @@ class Expander(double: Boolean) extends Module {
 
       when(i === stopValue) {
         state := State.Finished
-        // reset for next time
         i := 16.U 
       } .otherwise {
         i := i + plusI

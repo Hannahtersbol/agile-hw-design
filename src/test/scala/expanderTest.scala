@@ -9,30 +9,24 @@ class ExpanderTest extends AnyFlatSpec with ChiselScalatestTester {
 
   private def testHelper(
       message: String,
-      double: Boolean,
-      radix: Int
+      double: Boolean
   ): TestResult = {
     test(new Expander(double)) { dut =>
-      // "hello there" in binary (88 bits = 11 bytes)
-      val pwBinary = message
+      val msg = BigInt(message, 2)
 
-      val bytes = pwBinary.length / 8
-      val msg = BigInt(pwBinary, radix)
-      val blockExp = expectedBlock(bytes, msg)
+      val byteLength = message.length() / 8
+
+      val blockExp = expectedBlock(byteLength, msg)
       val Wexp = expectedW(blockExp)
-
-      println(pwBinary)
-      println(msg)
 
       dut.io.block.poke(blockExp.U)
       dut.io.enable.poke(true.B)
       var cycle = 0
       while (!dut.io.finished.peek().litToBoolean) {
-        // run clock until finished
+        // run clock until the finished bit is high
         dut.clock.step()
         cycle += 1
       }
-      // println(f"Input block: $block")
 
       for (i <- 0 until 64) {
         dut.io
@@ -41,12 +35,8 @@ class ExpanderTest extends AnyFlatSpec with ChiselScalatestTester {
             Wexp(i).U,
             s"w($i) mismatch, expected ${Wexp(i)} got ${dut.io.w(i).peek().litValue}"
           )
-
-        // Printing of
-        val wVal = dut.io.w(i).peek().litValue
-        println(s"Padded block (bin): w($i) = ${wVal.toString(2).reverse.padTo(32, '0').reverse}")
-        println(s"Padded block (bin): w($i) = ${Wexp(i).toString(2).reverse.padTo(32, '0').reverse}")
       }
+
       if (!double) {
         // One cycle for w[0..15] + 48 cycles for the calculation of w[16..63]
         assert(cycle == 49);
@@ -54,50 +44,35 @@ class ExpanderTest extends AnyFlatSpec with ChiselScalatestTester {
         // One cycle for w[0..15] + (48/2)=24 cycles for the calculation of w[16..63]
         assert(cycle == 25)
       }
-      // println(s"Number of Cycles: $cycle")
     }
   }
 
   it should "calculate the right w[0..63] from 'abc'" in {
     testHelper(
       "011000010110001001100011",
-      false,
-      2
+      false
     )
   }
 
   it should "calculate the right w[0..63] from the message 'Hello there' in binary" in {
     testHelper(
       "0110100001100101011011000110110001101111001000000111010001101000011001010111001001100101",
-      false,
-      2
+      false
     )
   }
 
   it should "calculate w[0..63] from the message 'Hello there', in 25 cycles" in {
     testHelper(
       "0110100001100101011011000110110001101111001000000111010001101000011001010111001001100101",
-      true,
-      2
+      true
     )
   }
 
-  it should "calculate w[0..63] from short message '001'" in {
+  it should "calculate w[0..63] from short message '00000001'" in {
     Seq(true, false).foreach { w =>
       testHelper(
-        "001",
-        w,
-        2
-      )
-    }
-  }
-
-  it should "calculate w[0..63] from empty message" in {
-    Seq(true, false).foreach { w =>
-      testHelper(
-        "0",
-        w,
-        2
+        "00000001",
+        w
       )
     }
   }
@@ -105,9 +80,8 @@ class ExpanderTest extends AnyFlatSpec with ChiselScalatestTester {
   it should "calculate w[0..63] from message of zero'es" in {
     Seq(true, false).foreach { w =>
       testHelper(
-        "000000",
-        w,
-        2
+        "00000000",
+        w
       )
     }
   }
@@ -115,18 +89,16 @@ class ExpanderTest extends AnyFlatSpec with ChiselScalatestTester {
   it should "calculate w[0..63] from message of ones" in {
     Seq(true, false).foreach { w =>
       testHelper(
-        "11111",
-        w,
-        2
+        "11111111",
+        w
       )
     }
   }
   it should "calculate w[0..63] from message 'abc'" in {
     Seq(true, false).foreach { w =>
       testHelper(
-        "abc",
-        w,
-        16
+        "011000010110001001100011",
+        w
       )
     }
   }
