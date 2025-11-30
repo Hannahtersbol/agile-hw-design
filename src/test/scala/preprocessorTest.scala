@@ -2,23 +2,10 @@
 import chisel3._
 import chiseltest._
 import org.scalatest.flatspec.AnyFlatSpec
+import TestHelper._
 
 class preprocessorTest extends AnyFlatSpec with ChiselScalatestTester {
   behavior of "preprocessor"
-
-  // Scala helper for expected block.
-  private def expectedBlock(widthBytes: Int, password: BigInt): BigInt = {
-    val L  = BigInt(widthBytes * 8)                // message length in bits
-    val K0 = (BigInt(447) - L) % BigInt(512)
-    val K  = if (K0 < 0) K0 + 512 else K0          // normalize into [0, 511]
-    val totalShiftInt = (K + 64).toInt             // <-- BigInt -> Int for shift distance
-
-    val messageWith1   = (password << 1) | 1
-    val messageShifted = messageWith1 << totalShiftInt
-    val out            = messageShifted | L
-    val mask512        = (BigInt(1) << 512) - 1
-    out & mask512
-  }
 
   it should "pad an 8-byte input correctly (two-cycle latency)" in {
     test(new preprocessor(width = 8)) { dut =>
