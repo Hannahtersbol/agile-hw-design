@@ -37,7 +37,7 @@ object TestHelper {
   def expectedW(block: BigInt): Seq[BigInt] = {
     val W = Array.fill[BigInt](64)(BigInt(0))
 
-    // w[0..15] according to your Expander's indexing:
+    // w[0..15]
     for (i <- 0 until 16) {
       val hi = 511 - 32 * i
       val lo = hi - 31
