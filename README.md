@@ -11,10 +11,10 @@ We verified the design with unit tests for each module and compared the final ha
 
 ## Structure
 
-- Preprocessor: Pads the input message and turns it into one or more 512‑bit blocks.
-- Expander: Builds the 64 words (w[0..63]) needed for each block.
-- Compressor: Runs the 64 SHA‑256 rounds and keeps the running hash across blocks.
-- SHA‑256 top: Connects all parts, latching blocks from the Preprocessor, driving the Expander/Compressor, and resetting the hash state only at the start of a new message
+- **Preprocessor**: Pads the input message and turns it into one or more 512‑bit blocks.
+- **Expander**: Builds the 64 words (w[0..63]) needed for each block.
+- **Compressor**: Runs the 64 SHA‑256 rounds and keeps the running hash across blocks.
+- **SHA‑256 top**: Connects all parts, latching blocks from the Preprocessor, driving the Expander/Compressor, and resetting the hash state only at the start of a new message
 
 ## Build and Test
 
@@ -24,7 +24,9 @@ We verified the design with unit tests for each module and compared the final ha
 - Scala: 2.13
 - Chisel: 6.7.0
 
-**Tests** are run with `sbt test`.
+**Testing** 
+To run all tests use `sbt test`.
+
 For testing a single component:
 - Preprocessor: `sbt "testOnly preprocessorTest`
 - Expander: `sbt "testOnly expanderTest`
@@ -51,6 +53,6 @@ The initial design of the SHA256 algorithm was based on the pseudo code from the
 Our minimal viable product is the sha256 hasher with an input size of 512 bits. 
 
 ## Optimizations
-[x] Preprocessor taking multiple block messages
-[] Compressor generator (more calculations per cycle)
-[] Parrallel states in sha-file
+- [x] Preprocessor taking multiple block messages
+- [] Compressor generator (more calculations per cycle)
+- [] Parrallel states in sha-file
