@@ -1,28 +1,28 @@
 #SHA-256 Hasher in Chisel
-##Group Members:
+## Group Members:
 - Hannah Christophersen Tersbøl (s224775)
 - Christoffer Dam-Hansen (s224789)
 - Frederik Hvarregaard (s224801)
 
-##Introduction 
+## Introduction 
 
-##Build and Test
+## Build and Test
 
-##Components 
+## Components 
 
-###Preprocessor 
-###Compressor
-###Expander 
-###SHA-256 Module
+### Preprocessor 
+### Compressor
+### Expander 
+### SHA-256 Module
 
-##Structure
+## Structure
 
-##Tests
-###Preprocessor 
-###Compressor
-###Expander 
-###SHA-256 Module
-###Helper Functions
+## Tests
+### Preprocessor 
+### Compressor
+### Expander 
+### SHA-256 Module
+### Helper Functions
 
-##Minimal Viable Product
-##Optimizations
+## Minimal Viable Product
+## Optimizations
