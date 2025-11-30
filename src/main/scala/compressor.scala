@@ -27,6 +27,7 @@ class compressor(val width: Int = 8) extends Module {
     0x19a4c116L, 0x1e376c08L, 0x2748774cL, 0x34b0bcb5L, 0x391c0cb3L, 0x4ed8aa4aL, 0x5b9cca4fL, 0x682e6ff3L,
     0x748f82eeL, 0x78a5636fL, 0x84c87814L, 0x8cc70208L, 0x90befffaL, 0xa4506cebL, 0xbef9a3f7L, 0xc67178f2L
   ).map(_.U(32.W)))
+  
   // Helper functions for SHA-256 operations
   private def rotateRight(x: UInt, n: Int): UInt = (x >> n) | (x << (32 - n))
   private def chF(x: UInt, y: UInt, z: UInt): UInt = (x & y) ^ (~x & z)
@@ -49,9 +50,7 @@ class compressor(val width: Int = 8) extends Module {
 
   // Hash state H[0..7]
   val H = RegInit(VecInit(H_values))
-  when(io.reset_hash){
-    H := VecInit(H_values)
-  }
+  
   // loop counter 0..63
   val loop_counter = RegInit(0.U(log2Ceil(64).W))
 
@@ -69,6 +68,11 @@ class compressor(val width: Int = 8) extends Module {
   switch(state) {
     is(State.Idle) {
       when(io.enable) {
+        // Only reset H when explicitly requested and entering Working state
+        when(io.reset_hash) {
+          H := VecInit(H_values)
+        }
+        
         // load working registers from H and start rounds
         a := H(0)
         b := H(1)
@@ -98,25 +102,25 @@ class compressor(val width: Int = 8) extends Module {
       val temp2 = S0 + maj
 
       // update working registers
-      h := g
-      g := f
-      f := e
-      e := d + temp1
-      d := c
-      c := b
-      b := a
       a := temp1 + temp2
+      b := a
+      c := b
+      d := c
+      e := d + temp1
+      f := e
+      g := f
+      h := g
 
       when(loop_counter === 63.U) {
         // finish compression and update H
-        H(0) := H(0) + a
-        H(1) := H(1) + b
-        H(2) := H(2) + c
-        H(3) := H(3) + d
-        H(4) := H(4) + e
-        H(5) := H(5) + f
-        H(6) := H(6) + g
-        H(7) := H(7) + h
+        H(0) := H(0) + temp1 + temp2
+        H(1) := H(1) + a
+        H(2) := H(2) + b
+        H(3) := H(3) + c
+        H(4) := H(4) + d + temp1
+        H(5) := H(5) + e
+        H(6) := H(6) + f
+        H(7) := H(7) + g
 
         state := State.Finished
       }.otherwise {

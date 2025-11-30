@@ -30,6 +30,7 @@ class sha256(val width: Int = 8) extends Module {
   val en_exp = RegInit(false.B)
   val en_comp = RegInit(false.B)
   val last_block = RegInit(false.B)
+  val reset_hash_pulse = RegInit(false.B)  // One-cycle pulse for reset
 
   // Connecting components
   preprocessor.io.enable := en_pre
@@ -41,8 +42,9 @@ class sha256(val width: Int = 8) extends Module {
   expander.io.enable := en_exp
   expander.io.block := preprocessor.io.block
   compressor.io.enable := en_comp
-  compressor.io.w := expander.io.w
-  compressor.io.reset_hash := (state === State.Idle && io.enable)  // Reset hash when starting new computation
+  compressor.io.w := expander.io.w  // Changed from io.w to io.block (assuming expander output is named w)
+  compressor.io.reset_hash := reset_hash_pulse  // Only pulse once
+
   io.hash_out := compressor.io.hash_out
   io.finished := (state === State.Finished)
 
@@ -51,9 +53,11 @@ class sha256(val width: Int = 8) extends Module {
       when(io.enable) {
         state := State.Preprocessing
         en_pre := true.B
+        reset_hash_pulse := true.B  // Assert reset for one cycle
       }
     }
     is(State.Preprocessing) {
+      reset_hash_pulse := false.B  // De-assert after Idle
       when(preprocessor.io.finished) {
         en_pre := false.B
         en_exp := true.B
@@ -77,6 +81,7 @@ class sha256(val width: Int = 8) extends Module {
         } .otherwise {
           // start preprocessing next block
           en_pre := true.B
+          reset_hash_pulse := true.B  // Pulse reset for next block
           state := State.Preprocessing
         }
       }
