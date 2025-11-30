@@ -1,7 +1,7 @@
 import chisel3._
 import chisel3.util._
 
-class compressor(val width: Int = 8) extends Module {
+class compressor(val sequencing: Int = 1) extends Module {
   val io = IO(new Bundle {
     // inputs ----------------
   	val enable = Input(Bool())
@@ -11,6 +11,11 @@ class compressor(val width: Int = 8) extends Module {
   	val finished = Output(Bool())
   	val hash_out = Output(Vec(8, UInt(32.W)))
   })
+  private object State extends ChiselEnum {
+    val Idle, Working, Finished = Value
+  }
+
+  private val state = RegInit(State.Idle)
   // values needed for SHA-256
   private val H_values = Seq(
     0x6a09e667L, 0xbb67ae85L, 0x3c6ef372L, 0xa54ff53aL,
@@ -34,30 +39,70 @@ class compressor(val width: Int = 8) extends Module {
   private def majF(x: UInt, y: UInt, z: UInt): UInt = (x & y) ^ (x & z) ^ (y & z)
   private def bigSigma0(x: UInt): UInt = rotateRight(x, 2) ^ rotateRight(x, 13) ^ rotateRight(x, 22)
   private def bigSigma1(x: UInt): UInt = rotateRight(x, 6) ^ rotateRight(x, 11) ^ rotateRight(x, 25)
-  private def smallSigma0(x: UInt): UInt = rotateRight(x, 7) ^ rotateRight(x, 18) ^ (x >> 3)
-  private def smallSigma1(x: UInt): UInt = rotateRight(x, 17) ^ rotateRight(x, 19) ^ (x >> 10)
 
-  // Working registers (a..h)
-  val a = RegInit(0.U(32.W))
-  val b = RegInit(0.U(32.W))
-  val c = RegInit(0.U(32.W))
-  val d = RegInit(0.U(32.W))
-  val e = RegInit(0.U(32.W))
-  val f = RegInit(0.U(32.W))
-  val g = RegInit(0.U(32.W))
-  val h = RegInit(0.U(32.W))
+  // loop counter 0..63
+  val loop_counter = RegInit(0.U(32.W))
   val blockRegs = RegInit(VecInit(Seq.fill(64)(0.U(32.W))))
-
   // Hash state H[0..7]
   val H = RegInit(VecInit(H_values))
-  
-  // loop counter 0..63
-  val loop_counter = RegInit(0.U(log2Ceil(64).W))
+  // Working registers (a..h)
+  val a = RegInit(0.U(32.W))
+  val aWire = Wire(Vec(sequencing + 1, UInt(32.W)))
+  aWire(0) := a
+  val b = RegInit(0.U(32.W))
+  val bWire = Wire(Vec(sequencing + 1, UInt(32.W)))
+  bWire(0) := b
+  val c = RegInit(0.U(32.W))
+  val cWire = Wire(Vec(sequencing + 1, UInt(32.W)))
+  cWire(0) := c
+  val d = RegInit(0.U(32.W))
+  val dWire = Wire(Vec(sequencing + 1, UInt(32.W)))
+  dWire(0) := d
+  val e = RegInit(0.U(32.W))
+  val eWire = Wire(Vec(sequencing + 1, UInt(32.W)))
+  eWire(0) := e
+  val f = RegInit(0.U(32.W))
+  val fWire = Wire(Vec(sequencing + 1, UInt(32.W)))
+  fWire(0) := f
+  val g = RegInit(0.U(32.W))
+  val gWire = Wire(Vec(sequencing + 1, UInt(32.W)))
+  gWire(0) := g
+  val h = RegInit(0.U(32.W))
+  val hWire = Wire(Vec(sequencing + 1, UInt(32.W)))
+  hWire(0) := h
 
-  private object State extends ChiselEnum {
-    val Idle, Working, Finished = Value
+  val S1 = Wire(Vec(sequencing, UInt(32.W)))
+  // Combinational hash round calculation
+  for(i <- 0 until sequencing){
+    S1(i) := bigSigma1(eWire(i))
+    val ch = chF(eWire(i), fWire(i), gWire(i))
+    val w_i = blockRegs(loop_counter+i.asUInt)
+    val temp1 = (hWire(i) + S1(i) + ch + K(loop_counter+i.asUInt) + w_i)(31, 0)
+    val S0 = bigSigma0(aWire(i))
+    val maj = majF(aWire(i), bWire(i), cWire(i))
+    val temp2 = (S0 + maj)(31, 0)
+
+    aWire(i+1) := (temp1 + temp2)(31, i)
+    bWire(i+1) := aWire(i)
+    cWire(i+1) := bWire(i)
+    dWire(i+1) := cWire(i)
+    eWire(i+1) := (d + temp1)(31, 0)
+    fWire(i+1) := eWire(i)
+    gWire(i+1) := fWire(i)
+    hWire(i+1) := gWire(i)
+    when(loop_counter + i.asUInt === 63.U){
+      H(0) := H(0) + aWire(i+1)
+      H(1) := H(1) + bWire(i+1)
+      H(2) := H(2) + cWire(i+1)
+      H(3) := H(3) + dWire(i+1)
+      H(4) := H(4) + eWire(i+1)
+      H(5) := H(5) + fWire(i+1)
+      H(6) := H(6) + gWire(i+1)
+      H(7) := H(7) + hWire(i+1)
+      state := State.Finished
+    }
+    loop_counter := loop_counter + sequencing.asUInt
   }
-  private val state = RegInit(State.Idle)
 
   // finished output reflects Finished state
   io.finished := (state === State.Finished)
@@ -72,7 +117,6 @@ class compressor(val width: Int = 8) extends Module {
         when(io.reset_hash) {
           H := VecInit(H_values)
         }
-        
         // load working registers from H and start rounds
         a := H(0)
         b := H(1)
@@ -93,39 +137,15 @@ class compressor(val width: Int = 8) extends Module {
     }
 
     is(State.Working) {
-      val S1 = bigSigma1(e)
-      val ch = chF(e, f, g)
-	    val w_i = blockRegs(loop_counter)
-      val temp1 = h + S1 + ch + K(loop_counter) + w_i
-      val S0 = bigSigma0(a)
-      val maj = majF(a, b, c)
-      val temp2 = S0 + maj
-
-      // update working registers
-      a := temp1 + temp2
-      b := a
-      c := b
-      d := c
-      e := d + temp1
-      f := e
-      g := f
-      h := g
-
-      when(loop_counter === 63.U) {
-        // finish compression and update H
-        H(0) := H(0) + temp1 + temp2
-        H(1) := H(1) + a
-        H(2) := H(2) + b
-        H(3) := H(3) + c
-        H(4) := H(4) + d + temp1
-        H(5) := H(5) + e
-        H(6) := H(6) + f
-        H(7) := H(7) + g
-
-        state := State.Finished
-      }.otherwise {
-        loop_counter := loop_counter + 1.U
-      }
+      // Update working registers
+      a := aWire(sequencing)
+      b := bWire(sequencing)
+      c := cWire(sequencing)
+      d := dWire(sequencing)
+      e := eWire(sequencing)
+      f := fWire(sequencing)
+      g := gWire(sequencing)
+      h := hWire(sequencing)
     }
 
     is(State.Finished) {
