@@ -1,6 +1,7 @@
 import chisel3._
 import chiseltest._
 import org.scalatest.flatspec.AnyFlatSpec
+import TestHelper._
 
 class compressorTest extends AnyFlatSpec with ChiselScalatestTester {
   behavior of "Compressor"
