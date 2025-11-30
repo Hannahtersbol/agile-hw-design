@@ -37,12 +37,11 @@ object TestHelper {
   def expectedW(block: BigInt): Seq[BigInt] = {
     val W = Array.fill[BigInt](64)(BigInt(0))
 
-    // w[0..15] according to your Expander's indexing:
-    for (i <- 0 until 16) {
-      val hi = 511 - 32 * i
-      val lo = hi - 31
-      W(i) = (block >> lo) & mask32
-    }
+  // If block is a single large integer and this extraction is intentional:
+  // Your current approach is fine, but consider:
+  for (i <- 0 until 16) {
+    W(i) = ((block >> (480 - i * 32)) & mask32).toInt  // explicit cast if needed
+  }
 
     // w[16..63]
     for (i <- 16 until 64) {

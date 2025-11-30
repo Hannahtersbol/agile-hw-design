@@ -13,9 +13,12 @@ class ExpanderTest extends AnyFlatSpec with ChiselScalatestTester {
       val pwBinary = message
 
       val bytes = pwBinary.length / 8
-      val msg = BigInt(pwBinary)
+      val msg = BigInt(pwBinary, 2)
       val blockExp = expectedBlock(bytes, msg)
       val Wexp = expectedW(blockExp)
+
+      println(pwBinary)
+      println(msg)
 
       dut.io.block.poke(blockExp.U)
       dut.io.enable.poke(true.B)
@@ -36,8 +39,9 @@ class ExpanderTest extends AnyFlatSpec with ChiselScalatestTester {
           )
 
         // Printing of
-        // val wVal = dut.io.w(i).peek().litValue
-        // println(s"Padded block (bin): w($i) = ${wVal.toString(2).reverse.padTo(32, '0').reverse}")
+        val wVal = dut.io.w(i).peek().litValue
+        println(s"Padded block (bin): w($i) = ${wVal.toString(2).reverse.padTo(32, '0').reverse}")
+        println(s"Padded block (bin): w($i) = ${Wexp(i).toString(2).reverse.padTo(32, '0').reverse}")
       }
       if (!double) {
         // One cycle for w[0..15] + 48 cycles for the calculation of w[16..63]
@@ -48,6 +52,13 @@ class ExpanderTest extends AnyFlatSpec with ChiselScalatestTester {
       }
       // println(s"Number of Cycles: $cycle")
     }
+  }
+
+  it should "calculate the right w[0..63] from 'abc'" in {
+    testHelper(
+      "011000010110001001100011",
+      false
+    )
   }
 
   it should "calculate the right w[0..63] from the message 'Hello there' in binary" in {
