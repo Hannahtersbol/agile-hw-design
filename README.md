@@ -18,11 +18,25 @@ We verified the design with unit tests for each module and compared the final ha
 
 ## Build and Test
 
+**Requirements** 
+- Java(JDK): version 17
+- sbt: version 1.9.x (project uses 1.9.6)
+- Scala: 2.13
+- Chisel: 6.7.0
+
+**Tests** are run with `sbt test`.
+For testing a single component:
+- Preprocessor: `sbt "testOnly preprocessorTest`
+- Expander: `sbt "testOnly expanderTest`
+- Compressor: `sbt "testOnly compressorTest`
+- Sha256: `sbt "testOnly sha256Test`
+
 ## Components 
+The initial design of the SHA256 algorithm was based on the pseudo code from the Wikipedia site on [SHA-2](https://en.wikipedia.org/wiki/SHA-2). This was a good starting point to get the basic structure and values for the project.
 
 ### Preprocessor 
-### Compressor
 ### Expander 
+### Compressor
 ### SHA-256 Module
 
 
@@ -34,4 +48,9 @@ We verified the design with unit tests for each module and compared the final ha
 ### Helper Functions
 
 ## Minimal Viable Product
+Our minimal viable product is the sha256 hasher with an input size of 512 bits. 
+
 ## Optimizations
+[x] Preprocessor taking multiple block messages
+[] Compressor generator (more calculations per cycle)
+[] Parrallel states in sha-file
