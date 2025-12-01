@@ -23,6 +23,7 @@ class sha256(val width: Int = 8, val compressor_sequencing: Int = 1, val debug_c
 
   // Instantiate modules
   val preprocessor = Module(new Preprocessor(width))
+  // val preprocessor = Module(new CyclicPreprocessor())
   val expander     = Module(new Expander(false))
   val compressor   = Module(new compressor(sequencing = compressor_sequencing, debug = debug_compressor))
 
@@ -68,7 +69,7 @@ class sha256(val width: Int = 8, val compressor_sequencing: Int = 1, val debug_c
       // Only reset hash at the start of a new message
       reset_hash_pulse := false.B
       // Capture each block as it becomes available
-      when(preprocessor.io.recieved) {
+      when(preprocessor.io.finished) {
         blockReg := preprocessor.io.block
         lastBlockReg := preprocessor.io.last_block
         en_pre := false.B
