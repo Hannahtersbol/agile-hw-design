@@ -1,7 +1,7 @@
 import chisel3._
 import chisel3.util._
 
-class sha256(val width: Int = 8) extends Module {
+class sha256(val width: Int = 8, val compressor_sequencing: Int = 1, val debug_compressor: Boolean = false) extends Module {
   val io = IO(new Bundle {
     val message_len  = Input(UInt(32.W))
     val message_word = Input(UInt((width * 8).W))
@@ -12,6 +12,8 @@ class sha256(val width: Int = 8) extends Module {
     val finished = Output(Bool())
 
     val recieved = Output(Bool())
+
+    val debug_port = if (debug_compressor) Some(Output(Vec(8, UInt(32.W)))) else None
   })
 
   private object State extends ChiselEnum {
@@ -22,7 +24,7 @@ class sha256(val width: Int = 8) extends Module {
   // Instantiate modules
   val preprocessor = Module(new Preprocessor(width))
   val expander     = Module(new Expander(false))
-  val compressor   = Module(new compressor())
+  val compressor   = Module(new compressor(sequencing = compressor_sequencing, debug = debug_compressor))
 
   // Control signals
   val en_pre           = RegInit(false.B)
@@ -103,5 +105,16 @@ class sha256(val width: Int = 8) extends Module {
         state := State.Idle
       }
     }
+  }
+
+  if(debug_compressor){
+    io.debug_port.get(0) := compressor.io.debug_port.get(0)
+    io.debug_port.get(1) := compressor.io.debug_port.get(1)
+    io.debug_port.get(2) := compressor.io.debug_port.get(2)
+    io.debug_port.get(3) := compressor.io.debug_port.get(3)
+    io.debug_port.get(4) := compressor.io.debug_port.get(4)
+    io.debug_port.get(5) := compressor.io.debug_port.get(5)
+    io.debug_port.get(6) := compressor.io.debug_port.get(6)
+    io.debug_port.get(7) := compressor.io.debug_port.get(7)
   }
 }

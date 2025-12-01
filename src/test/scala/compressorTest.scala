@@ -7,7 +7,7 @@ class compressorTest extends AnyFlatSpec with ChiselScalatestTester {
   behavior of "Compressor"
 
   it should "Count the amount of cycles" in {
-    test(new compressor) { dut =>
+    test(new compressor(sequencing = 1, debug = true)) { dut =>
       dut.io.enable.poke(true.B)
       dut.io.reset_hash.poke(false.B)
       dut.io.w.poke(VecInit(Seq.fill(64)(0.U(32.W))))

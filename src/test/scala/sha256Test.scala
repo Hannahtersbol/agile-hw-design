@@ -28,6 +28,15 @@ class sha256Test extends AnyFlatSpec with ChiselScalatestTester {
     var cycles = 0
     while (!dut.io.finished.peek().litToBoolean && cycles < 5000) {
       dut.clock.step()
+      if(dut.debug_compressor){
+        print("[")
+        for (i<-1 until 7){
+          print(dut.io.debug_port.get(i).peek().litValue)
+          print(" : ")
+        }
+        print(dut.io.debug_port.get(7).peek().litValue)
+        print("] \n")
+      }
       cycles += 1
     }
     dut.io.finished.expect(true.B)
@@ -54,13 +63,15 @@ class sha256Test extends AnyFlatSpec with ChiselScalatestTester {
     }
   }
 
-  it should "hash 'abc' correctly" in {
-    test(new sha256(width = 3)) { dut =>
-      val msg = "abc".getBytes("UTF-8")
-      val hw = runAndGetHashHex(dut, msg)
-      val sw = goldenSha256(msg)
-      assert(hw == sw)
-    }
+  it should "hash 'abc' correctly with different sequencing" in {
+    Seq(1,2,4,7,32).foreach(s =>
+      test(new sha256(width = 3, compressor_sequencing = s, debug_compressor = false)) { dut =>
+        val msg = "abc".getBytes("UTF-8")
+        val hw = runAndGetHashHex(dut, msg)
+        val sw = goldenSha256(msg)
+        assert(hw == sw)
+      }
+    )
   }
 
   it should "hash 8-byte message correctly" in {
@@ -99,12 +110,14 @@ class sha256Test extends AnyFlatSpec with ChiselScalatestTester {
     }
   }
 
-  it should "hash 100-byte message correctly" in {
-    test(new sha256(width = 100)) { dut =>
-      val msg = (0 until 100).map(_.toByte).toArray
-      val hw = runAndGetHashHex(dut, msg)
-      val sw = goldenSha256(msg)
-      assert(hw == sw)
+  it should "hash 100-byte message correctly with different sequencing" in {
+    Seq(1,2,7).foreach{ s =>
+      test(new sha256(width = 100, compressor_sequencing = s)) { dut =>
+        val msg = (0 until 100).map(_.toByte).toArray
+        val hw = runAndGetHashHex(dut, msg)
+        val sw = goldenSha256(msg)
+        assert(hw == sw)
+      }
     }
   }
 }

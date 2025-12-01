@@ -1,7 +1,7 @@
 import chisel3._
 import chisel3.util._
 
-class compressor(val sequencing: Int = 1) extends Module {
+class compressor(val sequencing: Int = 1, val debug: Boolean = false) extends Module {
   val io = IO(new Bundle {
     // inputs ----------------
   	val enable = Input(Bool())
@@ -10,6 +10,8 @@ class compressor(val sequencing: Int = 1) extends Module {
     // outputs ----------------
   	val finished = Output(Bool())
   	val hash_out = Output(Vec(8, UInt(32.W)))
+    
+    val debug_port = if (debug) Some(Output(Vec(8, UInt(32.W)))) else None
   })
   private object State extends ChiselEnum {
     val Idle, Working, Finished = Value
@@ -41,7 +43,7 @@ class compressor(val sequencing: Int = 1) extends Module {
   private def bigSigma1(x: UInt): UInt = rotateRight(x, 6) ^ rotateRight(x, 11) ^ rotateRight(x, 25)
 
   // loop counter 0..63
-  val loop_counter = RegInit(0.U(32.W))
+  val loop_counter = RegInit(0.U(6.W))
   val blockRegs = RegInit(VecInit(Seq.fill(64)(0.U(32.W))))
   // Hash state H[0..7]
   val H = RegInit(VecInit(H_values))
@@ -92,7 +94,7 @@ class compressor(val sequencing: Int = 1) extends Module {
     bWire(i+1) := aWire(i)
     cWire(i+1) := bWire(i)
     dWire(i+1) := cWire(i)
-    eWire(i+1) := (d + temp1(i))(31, 0)
+    eWire(i+1) := (dWire(i)+ temp1(i))(31, 0)
     fWire(i+1) := eWire(i)
     gWire(i+1) := fWire(i)
     hWire(i+1) := gWire(i)
@@ -107,7 +109,6 @@ class compressor(val sequencing: Int = 1) extends Module {
       H(7) := H(7) + hWire(i+1)
       state := State.Finished
     }
-    loop_counter := loop_counter + sequencing.asUInt
   }
 
   // finished output reflects Finished state
@@ -152,6 +153,7 @@ class compressor(val sequencing: Int = 1) extends Module {
       f := fWire(sequencing)
       g := gWire(sequencing)
       h := hWire(sequencing)
+      loop_counter := loop_counter + sequencing.asUInt
     }
 
     is(State.Finished) {
@@ -159,5 +161,16 @@ class compressor(val sequencing: Int = 1) extends Module {
         state := State.Idle
       }
     }
+  }
+
+  if(debug){
+    io.debug_port.get(0) := a
+    io.debug_port.get(1) := b
+    io.debug_port.get(2) := c
+    io.debug_port.get(3) := d
+    io.debug_port.get(4) := e
+    io.debug_port.get(5) := f
+    io.debug_port.get(6) := g
+    io.debug_port.get(7) := h
   }
 }
