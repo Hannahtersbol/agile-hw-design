@@ -120,4 +120,28 @@ class sha256Test extends AnyFlatSpec with ChiselScalatestTester {
       }
     }
   }
+
+  // it should "correctly hash 'abc' message" in {
+  //   test(new sha256()) { dut =>
+    
+  //     dut.io.enable.poke(true.B)
+  //     dut.io.message_len.poke(3.U)
+      
+  //     dut.io.message_word.poke("h61626300".U)
+  //     dut.clock.step(1)
+      
+  //     var cycles = 0
+	//     while(!dut.io.finished.peek().litToBoolean & cycles < 1000){
+	// 	    dut.clock.step(1)
+  //       cycles += 1
+	//     }
+  //     println(cycles)
+
+  //     val hw = (0 until 8).map(i => dut.io.hash_out(i).peek().litValue)
+  //     print(hashToHex(hw))
+  //     val msg = "abc".getBytes("UTF-8")
+  //     val sw = goldenSha256(msg)
+  //     assert(hashToHex(hw) == sw)
+  //   }
+  // }
 }
