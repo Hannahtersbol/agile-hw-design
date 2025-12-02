@@ -2,7 +2,7 @@ import chisel3._
 import chiseltest._
 import org.scalatest.flatspec.AnyFlatSpec
 
-class CyclicPreprocessorTest extends AnyFlatSpec with ChiselScalatestTester {
+class cyclicPreprocessorTest extends AnyFlatSpec with ChiselScalatestTester {
   
   behavior of "CyclicPreprocessor"
   

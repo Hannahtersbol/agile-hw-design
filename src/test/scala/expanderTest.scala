@@ -2,6 +2,8 @@ import chisel3._
 import chiseltest._
 import org.scalatest.flatspec.AnyFlatSpec
 import TestHelper._
+import chiseltest.simulator.VerilatorBackendAnnotation
+import chiseltest.WriteVcdAnnotation
 
 class ExpanderTest extends AnyFlatSpec with ChiselScalatestTester {
 
@@ -11,40 +13,41 @@ class ExpanderTest extends AnyFlatSpec with ChiselScalatestTester {
       message: String,
       double: Boolean
   ): TestResult = {
-    test(new Expander(double)) { dut =>
-      val msg = BigInt(message, 2)
+    test(new Expander(double))
+      .withAnnotations(Seq(WriteVcdAnnotation)) { dut =>
+        val msg = BigInt(message, 2)
 
-      val byteLength = message.length() / 8
+        val byteLength = message.length() / 8
 
-      val blockExp = expectedBlock(byteLength, msg)
-      val Wexp = expectedW(blockExp)
+        val blockExp = expectedBlock(byteLength, msg)
+        val Wexp = expectedW(blockExp)
 
-      dut.io.block.poke(blockExp.U)
-      dut.io.enable.poke(true.B)
-      var cycle = 0
-      while (!dut.io.finished.peek().litToBoolean) {
-        // run clock until the finished bit is high
-        dut.clock.step()
-        cycle += 1
+        dut.io.block.poke(blockExp.U)
+        dut.io.enable.poke(true.B)
+        var cycle = 0
+        while (!dut.io.finished.peek().litToBoolean) {
+          // run clock until the finished bit is high
+          dut.clock.step()
+          cycle += 1
+        }
+
+        for (i <- 0 until 64) {
+          dut.io
+            .w(i)
+            .expect(
+              Wexp(i).U,
+              s"w($i) mismatch, expected ${Wexp(i)} got ${dut.io.w(i).peek().litValue}"
+            )
+        }
+
+        if (!double) {
+          // One cycle for w[0..15] + 48 cycles for the calculation of w[16..63]
+          assert(cycle == 49);
+        } else {
+          // One cycle for w[0..15] + (48/2)=24 cycles for the calculation of w[16..63]
+          assert(cycle == 25)
+        }
       }
-
-      for (i <- 0 until 64) {
-        dut.io
-          .w(i)
-          .expect(
-            Wexp(i).U,
-            s"w($i) mismatch, expected ${Wexp(i)} got ${dut.io.w(i).peek().litValue}"
-          )
-      }
-
-      if (!double) {
-        // One cycle for w[0..15] + 48 cycles for the calculation of w[16..63]
-        assert(cycle == 49);
-      } else {
-        // One cycle for w[0..15] + (48/2)=24 cycles for the calculation of w[16..63]
-        assert(cycle == 25)
-      }
-    }
   }
 
   it should "calculate the right w[0..63] from 'abc'" in {
